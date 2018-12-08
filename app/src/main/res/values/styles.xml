@@ -9,7 +9,7 @@
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textSize">@dimen/text_regular_body</item>
     </style>
 
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">

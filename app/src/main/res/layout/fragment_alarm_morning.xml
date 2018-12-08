@@ -1,15 +1,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AlarmActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Morning"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชนิดยาฉีดอินซูลินชนิดที่ 1"
+                android:textSize="@dimen/text_regular_body" />
+
+            <com.isapanah.awesomespinner.AwesomeSpinner
+                android:id="@+id/spinner_first_medicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                app:spinnerDirection="ltr"
+                app:spinnerHint="กรุณาเลือกยาฉีดอินซูลิน" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ปริมาณยาฉีดอินซูลิน"
+                android:textSize="@dimen/text_regular_body" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="ชนิดยาฉีดอินซูลินชนิดที่ 2"
+                android:textSize="@dimen/text_regular_body" />
+
+            <com.isapanah.awesomespinner.AwesomeSpinner
+                android:id="@+id/spinner_second_medicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                app:spinnerDirection="ltr"
+                app:spinnerHint="กรุณาเลือกยาฉีดอินซูลิน" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ปริมาณยาฉีดอินซูลิน"
+                android:textSize="@dimen/text_regular_body" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:text="บันทึก"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_button" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
