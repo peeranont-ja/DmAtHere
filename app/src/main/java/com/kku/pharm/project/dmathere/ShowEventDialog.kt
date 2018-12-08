@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.Events
+package com.kku.pharm.project.dmathere
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -17,7 +17,7 @@ import com.kku.pharm.project.dmathere.AlarmActivity
 import com.kku.pharm.project.dmathere.AlarmMorningFragment
 import com.kku.pharm.project.dmathere.R
 
-internal class ShowEvent : Activity(), View.OnClickListener {
+internal class ShowEventDialog : Activity(), View.OnClickListener {
 
     private lateinit var pm: PowerManager
     private lateinit var wl: PowerManager.WakeLock
@@ -30,11 +30,11 @@ internal class ShowEvent : Activity(), View.OnClickListener {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        Log.i("ShowEvent", "onCreate() in DismissLock")
+        Log.i("ShowEventDialog", "onCreate() in DismissLock")
         pm = getSystemService(Context.POWER_SERVICE) as PowerManager
         km = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-        kl = km.newKeyguardLock("ShowEvent")
-        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.ON_AFTER_RELEASE, "ShowEvent")
+        kl = km.newKeyguardLock("ShowEventDialog")
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.ON_AFTER_RELEASE, "ShowEventDialog")
         wl.acquire() //wake up the screen
         kl.disableKeyguard()
 
@@ -47,7 +47,7 @@ internal class ShowEvent : Activity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.btnStop) {
-            AlarmActivity.listValue.removeAt(0)
+//            AlarmActivity.listValue.removeAt(0)
             this.finish()
         }
     }
