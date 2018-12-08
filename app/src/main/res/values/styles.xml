@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
 
     </style>

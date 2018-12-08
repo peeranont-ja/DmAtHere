@@ -1,5 +1,6 @@
 package com.kku.pharm.project.dmathere
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -7,7 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_alarm.*
-
+import android.widget.TextView
+import android.widget.LinearLayout
 
 class AlarmActivity : AppCompatActivity() {
 
@@ -29,9 +31,10 @@ class AlarmActivity : AppCompatActivity() {
 
         setupViewPager(viewpager)
 
-
         tabs.setupWithViewPager(viewpager)
         setupTabIcons()
+
+        updateTabTextColors()
     }
 
     private fun setupTabIcons() {
@@ -51,7 +54,7 @@ class AlarmActivity : AppCompatActivity() {
     }
 
     internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-        private val mFragmentList:ArrayList<Fragment> = ArrayList()
+        private val mFragmentList: ArrayList<Fragment> = ArrayList()
         private val mFragmentTitleList: ArrayList<String> = ArrayList()
 
         override fun getItem(position: Int): Fragment {
@@ -71,6 +74,35 @@ class AlarmActivity : AppCompatActivity() {
             return mFragmentTitleList[position]
 //            return null
         }
+    }
+
+    private fun updateTabTextColors() {
+        val tabsContainer = tabs.getChildAt(0) as LinearLayout
+//        for (i in 0 until tabs.tabCount) {
+//            val item = tabsContainer.getChildAt(i) as LinearLayout
+//            val tv = item.getChildAt(1) as TextView
+//            tv.setTextColor(if (i%2 == 0) Color.MAGENTA else Color.BLUE)
+//
+//            val tabsContainer = tabs.getChildAt(0) as LinearLayout
+//            val childLayout1 = tabsContainer.getChildAt(2) as LinearLayout
+//            val childLayout2 = tabsContainer.getChildAt(3) as LinearLayout
+//
+//            var tabView = childLayout1.getChildAt(0).parent as LinearLayout
+//            tabView.setBackgroundColor(Color.GREEN)
+//
+//            tabView = childLayout2.getChildAt(0).parent as LinearLayout
+//            tabView.setBackgroundColor(Color.RED)
+//        }
+
+
+//        val childLayout1 = tabsContainer.getChildAt(0)as LinearLayout
+//        val childLayout2 = tabsContainer.getChildAt(1)as LinearLayout
+//        val childLayout3 = tabsContainer.getChildAt(2)as LinearLayout
+//        val childLayout4 = tabsContainer.getChildAt(3)as LinearLayout
+//
+//        var tabView = childLayout1.getChildAt(0).parent as LinearLayout
+//        tabView.setBackgroundColor(ContextCompat.getColor(this, R.color.oldGold))
+////        tabView.elevation = -10F
     }
 
     override fun onSupportNavigateUp(): Boolean {

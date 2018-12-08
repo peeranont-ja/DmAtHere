@@ -8,4 +8,6 @@
 
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
+
+    <color name="oldGold">#F4A548</color>
 </resources>
