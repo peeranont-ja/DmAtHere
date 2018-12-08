@@ -2,6 +2,7 @@ package com.kku.pharm.project.dmathere
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import org.greenrobot.eventbus.EventBus
 
 
 class AlarmMorningFragment : Fragment() {
+    private var isAddingAction = false
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -28,6 +30,19 @@ class AlarmMorningFragment : Fragment() {
         setupMedicineTypeSpinner()
         btn_set_alarm.setOnClickListener {
             EventBus.getDefault().post(SetAlarmTimeEvent())
+        }
+
+        img_second_medicine_action.setOnClickListener {
+//            TransitionManager.beginDelayedTransition(layout_second_medicine)
+            if(!isAddingAction) {
+                layout_second_medicine_detail.visibility = View.VISIBLE
+                img_second_medicine_action.setImageResource(R.mipmap.ic_remove)
+                isAddingAction = true
+            }else{
+                layout_second_medicine_detail.visibility = View.GONE
+                img_second_medicine_action.setImageResource(R.mipmap.ic_add)
+                isAddingAction = false
+            }
         }
     }
 
