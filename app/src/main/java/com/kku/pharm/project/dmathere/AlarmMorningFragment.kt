@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.kku.pharm.project.dmathere.Events.SetAlarmTimeEvent
 import kotlinx.android.synthetic.main.fragment_alarm_morning.*
-import com.isapanah.awesomespinner.AwesomeSpinner
-
-
+import org.greenrobot.eventbus.EventBus
 
 
 class AlarmMorningFragment : Fragment() {
@@ -27,10 +26,13 @@ class AlarmMorningFragment : Fragment() {
 
     private fun setupView() {
         setupMedicineTypeSpinner()
+        btn_set_alarm.setOnClickListener {
+            EventBus.getDefault().post(SetAlarmTimeEvent())
+        }
     }
 
-    private fun setupMedicineTypeSpinner(){
-        val categories =  arrayOf(
+    private fun setupMedicineTypeSpinner() {
+        val categories = arrayOf(
                 "NovoRapid Penfill",
                 "Insulatard Penfill",
                 "Actrapid Penfill",
@@ -41,10 +43,9 @@ class AlarmMorningFragment : Fragment() {
                 "Mixtard 30 HM",
                 "Actrapid HM",
                 "Insulatard HM"
-                )
+        )
 
-        val adapter = ArrayAdapter(context,android.R.layout.simple_spinner_item, categories)
-//        val categoriesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
+        val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, categories)
 
         spinner_first_medicine.setAdapter(adapter)
         spinner_second_medicine.setAdapter(adapter)
@@ -57,5 +58,4 @@ class AlarmMorningFragment : Fragment() {
             //TODO YOUR ACTIONS
         }
     }
-
 }

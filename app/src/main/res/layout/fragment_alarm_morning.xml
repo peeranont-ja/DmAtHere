@@ -57,6 +57,20 @@
                 android:textSize="@dimen/text_regular_body" />
 
             <Button
+                android:id="@+id/btn_set_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:text="ตั้งเวลาแจ้งเตือน"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_button" />
+
+            <Button
                 android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -7,9 +7,19 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
+import com.kku.pharm.project.dmathere.Events.SetAlarmTimeEvent
 import kotlinx.android.synthetic.main.activity_alarm.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import java.util.*
+
 
 class AlarmActivity : AppCompatActivity() {
+
+    companion object {
+        var listValue: ArrayList<String> = ArrayList()
+    }
 
     private val iconList = intArrayOf(
             R.drawable.ic_sunrise,
@@ -33,6 +43,11 @@ class AlarmActivity : AppCompatActivity() {
         setupTabIcons()
 
         updateTabTextColors()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setupTabIcons() {
@@ -103,8 +118,20 @@ class AlarmActivity : AppCompatActivity() {
 ////        tabView.elevation = -10F
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
     }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: SetAlarmTimeEvent) {
+        /* Do something */
+    }
+
+
 }
