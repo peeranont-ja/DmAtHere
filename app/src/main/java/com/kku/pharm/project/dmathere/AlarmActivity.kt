@@ -22,10 +22,10 @@ class AlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
 
+        toolbar.title = "ตั้งค่าแจ้งเตือนเวลาฉีดอินซูลิน"
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-
 
         setupViewPager(viewpager)
 
@@ -68,8 +68,8 @@ class AlarmActivity : AppCompatActivity() {
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-//            return mFragmentTitleList[position]
-            return null
+            return mFragmentTitleList[position]
+//            return null
         }
     }
 
