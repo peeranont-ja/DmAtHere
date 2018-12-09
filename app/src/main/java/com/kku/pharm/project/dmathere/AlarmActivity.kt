@@ -1,31 +1,17 @@
 package com.kku.pharm.project.dmathere
 
-import android.app.*
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.LinearLayout
-import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
-import com.kku.pharm.project.dmathere.Events.SetAlarmTimeEvent
 import kotlinx.android.synthetic.main.activity_alarm.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 
 class AlarmActivity : AppCompatActivity() {
-
-    companion object {
-        var listValue: ArrayList<String> = ArrayList()
-    }
-
     private val iconList = intArrayOf(
             R.drawable.ic_sunrise,
             R.drawable.ic_sun,
@@ -123,47 +109,33 @@ class AlarmActivity : AppCompatActivity() {
 ////        tabView.elevation = -10F
     }
 
-    public override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    public override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onSetAlarmTimeEvent(event: SetAlarmTimeEvent) {
-        /* Do something */
-        showTimePickerDialog()
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onOnTimeSetEvent(event: OnTimeSetEvent) {
-        /* Do something */
-        setAlarm(event.calendar)
-    }
+//    public override fun onStart() {
+//        super.onStart()
+//        EventBus.getDefault().register(this)
+//    }
+//
+//    public override fun onStop() {
+//        super.onStop()
+//        EventBus.getDefault().unregister(this)
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    fun onSetAlarmTimeEvent(event: SetAlarmTimeEvent) {
+//        /* Do something */
+//        showTimePickerDialog()
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    fun onOnTimeSetEvent(event: OnTimeSetEvent) {
+//        /* Do something */
+//        setAlarm(event.calendar)
+//    }
 
     private fun showTimePickerDialog() {
         val newFragment = TimePickerFragment()
         newFragment.show(this.supportFragmentManager, newFragment.tag)
     }
 
-    private fun setAlarm(targetCal: Calendar) {
-//        listValue.add(targetCal.time.toString() + "")
 
-        Log.d("test time", targetCal.time.toString() + "")
-//        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listValue)
-//        listAlarm.setAdapter(adapter)
-
-        val id = System.currentTimeMillis().toInt()
-
-        val intent = Intent(baseContext, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(baseContext, id, intent, 0)
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.timeInMillis, pendingIntent)
-
-    }
 
 }
