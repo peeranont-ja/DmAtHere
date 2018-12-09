@@ -70,16 +70,16 @@ class AlarmMorningFragment : Fragment() {
 
     private fun setupMedicineTypeSpinner() {
         val categories = arrayOf(
-                "NovoRapid Penfill",
-                "Insulatard Penfill",
-                "Actrapid Penfill",
-                "Mixtard Penfill",
-                "NovoMix",
-                "Lantus Solostar",
-                "Levemir Flexpen",
-                "Mixtard 30 HM",
-                "Actrapid HM",
-                "Insulatard HM"
+                "NovoRapid® Penfill®",
+                "Insulatard® Penfill®",
+                "Actrapid® Penfill®",
+                "Mixtard® Penfill®",
+                "NovoMix®",
+                "Lantus® Solostar®",
+                "Levemir® Flexpen",
+                "Mixtard® 30 HM",
+                "Actrapid® HM",
+                "Insulatard® HM"
         )
 
         val adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, categories)

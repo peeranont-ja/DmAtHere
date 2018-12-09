@@ -79,6 +79,7 @@
                             android:layout_height="wrap_content"
                             android:imeOptions="actionDone"
                             android:inputType="number"
+                            android:maxLength="3"
                             android:textAlignment="center" />
 
                         <View
@@ -178,6 +179,7 @@
                                     android:layout_height="wrap_content"
                                     android:imeOptions="actionDone"
                                     android:inputType="number"
+                                    android:maxLength="3"
                                     android:textAlignment="center" />
 
                                 <View
