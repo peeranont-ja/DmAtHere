@@ -29,7 +29,7 @@ import java.util.Calendar.*
 import kotlin.collections.ArrayList
 
 
-class AlarmMorningFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class AlarmMorningFragment : Fragment() {
     private var isAddingAction = false
     private lateinit var calendar: Calendar
     private var myContext: FragmentActivity? = null
@@ -99,53 +99,49 @@ class AlarmMorningFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
 
-        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, categories)
-        arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
-
-        with(spinner_first_medicine)
-        {
-            adapter = arrayAdapter
-            setSelection(0, false)
-            onItemSelectedListener = this@AlarmMorningFragment
-            prompt = "กรุณาเลือกยาฉีดอินซูลิน"
-            gravity = Gravity.CENTER
-        }
-
-        with(spinner_second_medicine)
-        {
-            adapter = arrayAdapter
-            setSelection(0, false)
-            onItemSelectedListener = this@AlarmMorningFragment
-            prompt = "กรุณาเลือกยาฉีดอินซูลิน"
-            gravity = Gravity.CENTER
-        }
+        setupSpinner()
     }
 
     private fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        when (view?.id) {
-            spinner_first_medicine.id -> {
+    private fun setupSpinner(){
+        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, categories)
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
+
+        spinner_first_medicine.adapter = arrayAdapter
+        spinner_first_medicine.setSelection(0)
+        spinner_first_medicine.prompt = "กรุณาเลือกยาฉีดอินซูลิน"
+        spinner_first_medicine.gravity = Gravity.CENTER
+
+        spinner_second_medicine.adapter = arrayAdapter
+        spinner_second_medicine.setSelection(0)
+        spinner_second_medicine.prompt = "กรุณาเลือกยาฉีดอินซูลิน"
+        spinner_second_medicine.gravity = Gravity.CENTER
+
+        spinner_first_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
                 firstMed = categories[0]
             }
-            spinner_second_medicine.id -> {
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                firstMed = categories[position]
+            }
+
+        }
+
+        spinner_second_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
                 if (layout_second_medicine_detail.visibility == View.VISIBLE) {
                     secondMed = categories[0]
                 }
             }
-        }
-    }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        when (view?.id) {
-            spinner_first_medicine.id -> {
-                firstMed = categories[position]
-            }
-            spinner_second_medicine.id -> {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 secondMed = categories[position]
             }
+
         }
     }
 
