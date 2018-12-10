@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="แจ้งเตือนฉีดยาอินซูลิน"
         android:textColor="#000000"
-        android:textSize="@dimen/text_size_larger1" />
+        android:textSize="@dimen/text_size_normal" />
 
     <!--<TextView-->
     <!--android:id="@+id/textView2"-->
@@ -72,9 +72,10 @@
 
     <Button
         android:id="@+id/btnStop"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:backgroundTint="@color/colorPrimary"
         android:text="ปิดหน้าต่างนี้"
         android:textColor="@android:color/white" />

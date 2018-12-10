@@ -307,6 +307,14 @@
 
                     </RelativeLayout>
 
+                    <CheckBox
+                        android:id="@+id/checkBox_repeat_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="ปลุกซ้ำทุกวัน"
+                        android:visibility="gone" />
+
                     <Button
                         android:id="@+id/btn_set_alarm"
                         android:layout_width="wrap_content"

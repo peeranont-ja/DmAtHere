@@ -40,6 +40,7 @@ class AlarmMorningFragment : Fragment() {
     private var firstMedAmount: String = ""
     private var secondMed: String? = null
     private var secondMedAmount: String? = null
+    private var isRepeated: Boolean = false
 
     private var hour: Int = 0
     private var minute: Int = 0
@@ -105,6 +106,12 @@ class AlarmMorningFragment : Fragment() {
             }
         }
 
+        checkBox_repeat_alarm.setOnCheckedChangeListener { buttonView,
+                                                           isChecked ->
+            isRepeated = isChecked
+        }
+
+
         setupSpinner()
     }
 
@@ -156,8 +163,22 @@ class AlarmMorningFragment : Fragment() {
             val intent = Intent(context, AlarmReceiver::class.java)
             val pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0)
             val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.timeInMillis, pendingIntent)
-            Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
+
+            if (isRepeated) {
+                alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        targetCal.timeInMillis,
+                        AlarmManager.INTERVAL_DAY,
+                        pendingIntent)
+                Log.d("test alarm", targetCal.time.toString() + ": Set Repeat Alarm success.")
+            } else {
+                alarmManager.set(
+                        AlarmManager.RTC_WAKEUP,
+                        targetCal.timeInMillis,
+                        pendingIntent)
+                Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
+            }
+
             saveAlarmData()
             showToast("ตั้งเวลาแจ้งเตือนสำเร็จ")
         } else {
@@ -238,6 +259,7 @@ class AlarmMorningFragment : Fragment() {
 
         TransitionManager.beginDelayedTransition(layout_alarm_time)
         layout_time.visibility = View.VISIBLE
+        checkBox_repeat_alarm.visibility = View.VISIBLE
 
         dayOfTheWeek = calendar!!.get(DAY_OF_WEEK)
         day = calendar!!.get(DAY_OF_MONTH)
