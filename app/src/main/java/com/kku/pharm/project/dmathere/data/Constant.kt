@@ -7,4 +7,6 @@ object Constant {
     const val TIME_DESC_EVENING = "TIME_DESC_EVENING"
     const val TIME_DESC_NIGHT = "TIME_DESC_NIGHT"
 
+    const val STATUS_INACTIVE = "INACTIVE"
+    const val STATUS_ACTIVE = "ACTIVE"
 }

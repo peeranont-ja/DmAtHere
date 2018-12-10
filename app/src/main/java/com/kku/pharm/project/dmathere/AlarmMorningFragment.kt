@@ -89,7 +89,6 @@ class AlarmMorningFragment : Fragment() {
                 null
             } else et_second_medicine_amount.text.toString()
 
-
             setAlarm(calendar)
         }
 
@@ -184,32 +183,34 @@ class AlarmMorningFragment : Fragment() {
                 calendar!!.get(HOUR_OF_DAY),
                 calendar!!.get(MINUTE),
                 Constant.TIME_DESC_MORNING,
-                false
+                false,
+                Constant.STATUS_ACTIVE
         )
 
         PreferenceHelper.initPreferenceHelper(context!!)
 
-        val alarmList = PreferenceHelper.alarmTimeInformationList
+        val perfData = PreferenceHelper.alarmTimeInformationList
         var list: ArrayList<AlarmTimeInformation> = ArrayList()
-        if (alarmList != null) {
-            list = alarmList.alarmList
+        if (perfData != null) {
+            list = perfData.alarmList
             list.add(alarmInfo)
         } else {
             list.add(alarmInfo)
         }
         PreferenceHelper.alarmTimeInformationList = AlarmTimeInformationList(list)
 
-        val test = PreferenceHelper.alarmTimeInformationList
-        for (i in 0 until test?.alarmList!!.size) {
-            Log.d("test perfs $i", test.alarmList[i].id)
-            Log.d("test perfs $i", test.alarmList[i].firstMed)
-            Log.d("test perfs $i", test.alarmList[i].firstMedAmount)
-            Log.d("test perfs $i", test.alarmList[i].secondMed.toString())
-            Log.d("test perfs $i", test.alarmList[i].secondMedAmount.toString())
-            Log.d("test perfs $i", test.alarmList[i].hour.toString())
-            Log.d("test perfs $i", test.alarmList[i].minute.toString())
-            Log.d("test perfs $i", test.alarmList[i].timeDescription)
-            Log.d("test perfs $i", test.alarmList[i].isRepeated.toString())
+        val alarmList = PreferenceHelper.alarmTimeInformationList
+        for (i in 0 until alarmList?.alarmList!!.size) {
+            Log.d("test perfs $i", alarmList.alarmList[i].id)
+            Log.d("test perfs $i", alarmList.alarmList[i].firstMed)
+            Log.d("test perfs $i", alarmList.alarmList[i].firstMedAmount)
+            Log.d("test perfs $i", alarmList.alarmList[i].secondMed.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].secondMedAmount.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].hour.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].minute.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].timeDescription)
+            Log.d("test perfs $i", alarmList.alarmList[i].isRepeated.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].status)
         }
     }
 

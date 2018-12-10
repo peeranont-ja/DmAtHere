@@ -9,5 +9,6 @@ class AlarmTimeInformation (
         var hour: Int,
         var minute: Int,
         var timeDescription: String,
-        var isRepeated: Boolean
+        var isRepeated: Boolean,
+        var status: String
 )
