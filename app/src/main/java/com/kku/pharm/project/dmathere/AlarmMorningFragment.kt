@@ -134,7 +134,6 @@ class AlarmMorningFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 firstMed = categories[position]
             }
-
         }
 
         spinner_second_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
