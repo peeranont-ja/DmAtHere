@@ -312,8 +312,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:buttonTint="@color/colorPrimary"
                         android:text="ปลุกซ้ำทุกวัน"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <Button
                         android:id="@+id/btn_set_alarm"
