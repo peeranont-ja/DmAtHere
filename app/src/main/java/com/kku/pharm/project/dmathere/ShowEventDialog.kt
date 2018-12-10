@@ -16,6 +16,7 @@ import android.widget.Button
 import com.kku.pharm.project.dmathere.AlarmActivity
 import com.kku.pharm.project.dmathere.AlarmMorningFragment
 import com.kku.pharm.project.dmathere.R
+import java.util.*
 
 internal class ShowEventDialog : Activity(), View.OnClickListener {
 
@@ -35,13 +36,16 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
         km = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         kl = km.newKeyguardLock("ShowEventDialog")
         wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.ON_AFTER_RELEASE, "ShowEventDialog")
-        wl.acquire() //wake up the screen
+        wl.acquire(10*60*1000L /*10 minutes*/) //wake up the screen
         kl.disableKeyguard()
 
         setContentView(R.layout.activity_notification)
 
         btnStop = findViewById(R.id.btnStop)
         btnStop.setOnClickListener(this)
+
+        val cal = Calendar.getInstance()
+        Log.d("test event time", cal.time.toString())
 
     }
 

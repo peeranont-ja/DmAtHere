@@ -10,23 +10,55 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.transition.TransitionManager
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.*
 import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
+import com.kku.pharm.project.dmathere.data.Constant
+import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
+import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
+import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformationList
 import kotlinx.android.synthetic.main.fragment_alarm_morning.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import java.util.Calendar.*
+import kotlin.collections.ArrayList
 
 
-class AlarmMorningFragment : Fragment() {
+class AlarmMorningFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var isAddingAction = false
     private lateinit var calendar: Calendar
     private var myContext: FragmentActivity? = null
+
+    private var alarmID: String = ""
+    private var firstMed: String = ""
+    private var firstMedAmount: String = ""
+    private var secondMed: String? = null
+    private var secondMedAmount: String? = null
+
+    private var hour: Int = 0
+    private var minute: Int = 0
+    private var day: Int = 0
+    private var dayOfTheWeek: Int = 0
+    private var month: Int = 0
+    private var year: Int = 0
+
+    private val categories = arrayOf(
+            "NovoRapid® Penfill®",
+            "Insulatard® Penfill®",
+            "Actrapid® Penfill®",
+            "Mixtard® Penfill®",
+            "NovoMix®",
+            "Lantus® Solostar®",
+            "Levemir® Flexpen",
+            "Mixtard® 30 HM",
+            "Actrapid® HM",
+            "Insulatard® HM"
+    )
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -45,7 +77,7 @@ class AlarmMorningFragment : Fragment() {
     }
 
     private fun setupView() {
-        setupMedicineTypeSpinner()
+//        setupMedicineTypeSpinner()
         btn_set_alarm.setOnClickListener {
             showTimePickerDialog()
         }
@@ -66,33 +98,54 @@ class AlarmMorningFragment : Fragment() {
                 isAddingAction = false
             }
         }
-    }
 
-    private fun setupMedicineTypeSpinner() {
-        val categories = arrayOf(
-                "NovoRapid® Penfill®",
-                "Insulatard® Penfill®",
-                "Actrapid® Penfill®",
-                "Mixtard® Penfill®",
-                "NovoMix®",
-                "Lantus® Solostar®",
-                "Levemir® Flexpen",
-                "Mixtard® 30 HM",
-                "Actrapid® HM",
-                "Insulatard® HM"
-        )
+        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, categories)
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
 
-        val adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, categories)
-
-        spinner_first_medicine.setAdapter(adapter)
-        spinner_second_medicine.setAdapter(adapter)
-
-        spinner_first_medicine.setOnSpinnerItemClickListener { position, itemAtPosition ->
-            //TODO YOUR ACTIONS
+        with(spinner_first_medicine)
+        {
+            adapter = arrayAdapter
+            setSelection(0, false)
+            onItemSelectedListener = this@AlarmMorningFragment
+            prompt = "กรุณาเลือกยาฉีดอินซูลิน"
+            gravity = Gravity.CENTER
         }
 
-        spinner_second_medicine.setOnSpinnerItemClickListener { position, itemAtPosition ->
-            //TODO YOUR ACTIONS
+        with(spinner_second_medicine)
+        {
+            adapter = arrayAdapter
+            setSelection(0, false)
+            onItemSelectedListener = this@AlarmMorningFragment
+            prompt = "กรุณาเลือกยาฉีดอินซูลิน"
+            gravity = Gravity.CENTER
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        when (view?.id) {
+            spinner_first_medicine.id -> {
+                firstMed = categories[0]
+            }
+            spinner_second_medicine.id -> {
+                if (layout_second_medicine_detail.visibility == View.VISIBLE) {
+                    secondMed = categories[0]
+                }
+            }
+        }
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        when (view?.id) {
+            spinner_first_medicine.id -> {
+                firstMed = categories[position]
+            }
+            spinner_second_medicine.id -> {
+                secondMed = categories[position]
+            }
         }
     }
 
@@ -103,8 +156,55 @@ class AlarmMorningFragment : Fragment() {
         val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.timeInMillis, pendingIntent)
         Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
-
+        saveAlarmData()
+        showToast("ตั้งเวลาแจ้งเตือนสำเร็จ")
     }
+
+    private fun saveAlarmData() {
+        firstMedAmount = et_first_medicine_amount.text.toString()
+
+        secondMedAmount = if (et_second_medicine_amount.text.isNullOrBlank()) {
+            null
+        } else et_second_medicine_amount.text.toString()
+
+        val alarmInfo = AlarmTimeInformation(
+                alarmID,
+                firstMed,
+                firstMedAmount,
+                secondMed,
+                secondMedAmount,
+                calendar.get(HOUR_OF_DAY),
+                calendar.get(MINUTE),
+                Constant.TIME_DESC_MORNING,
+                false
+        )
+
+        PreferenceHelper.initPreferenceHelper(context!!)
+
+        val alarmList = PreferenceHelper.alarmTimeInformationList
+        var list: ArrayList<AlarmTimeInformation> = ArrayList()
+        if (alarmList != null) {
+            list = alarmList.alarmList
+            list.add(alarmInfo)
+        } else {
+            list.add(alarmInfo)
+        }
+        PreferenceHelper.alarmTimeInformationList = AlarmTimeInformationList(list)
+
+        val test = PreferenceHelper.alarmTimeInformationList
+        for (i in 0 until test?.alarmList!!.size) {
+            Log.d("test perfs $i", test.alarmList[i].id)
+            Log.d("test perfs $i", test.alarmList[i].firstMed)
+            Log.d("test perfs $i", test.alarmList[i].firstMedAmount)
+            Log.d("test perfs $i", test.alarmList[i].secondMed.toString())
+            Log.d("test perfs $i", test.alarmList[i].secondMedAmount.toString())
+            Log.d("test perfs $i", test.alarmList[i].hour.toString())
+            Log.d("test perfs $i", test.alarmList[i].minute.toString())
+            Log.d("test perfs $i", test.alarmList[i].timeDescription)
+            Log.d("test perfs $i", test.alarmList[i].isRepeated.toString())
+        }
+    }
+
 
     private fun showTimePickerDialog() {
         val newFragment = TimePickerFragment()
@@ -131,21 +231,31 @@ class AlarmMorningFragment : Fragment() {
         TransitionManager.beginDelayedTransition(layout_alarm_time)
         layout_time.visibility = View.VISIBLE
 
-        val hour = calendar.get(HOUR_OF_DAY).toString()
+        dayOfTheWeek = calendar.get(DAY_OF_WEEK)
+        day = calendar.get(DAY_OF_MONTH)
+        month = calendar.get(MONTH)
+        year = calendar.get(YEAR)
+        hour = calendar.get(HOUR_OF_DAY)
+        minute = calendar.get(MINUTE)
+
+        alarmID = "$dayOfTheWeek$day$month$year$hour$minute"
+        Log.d("test alarm id", alarmID)
+
+        tv_hour.text = if (hour < 10 || hour.toString().length == 1) {
+            "0$hour"
+        } else hour.toString()
+
+        tv_minute.text = if (minute < 10 || minute.toString().length == 1) {
+            "0$minute"
+        } else minute.toString()
+
 //        val amPM = calendar.get(AM_PM)
-
-        tv_hour.text = if (hour.length == 1) {
-            "0${calendar.get(HOUR_OF_DAY)}"
-        } else calendar.get(HOUR_OF_DAY).toString()
-
-        tv_minute.text = calendar.get(MINUTE).toString()
-
 //        tv_am_pm.text = if (amPM == 0) {
 //            "AM"
 //        } else "PM"
 
         btn_set_alarm.text = if (tv_hour.visibility == View.VISIBLE) {
             "แก้ไขเวลา"
-        } else "ตั้งค่าเวลาใหม่"
+        } else "เลือกเวลาใหม่"
     }
 }

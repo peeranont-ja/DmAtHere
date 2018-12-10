@@ -10,6 +10,14 @@
 
     <dimen name="text_regular_body">16sp</dimen>
     <dimen name="text_button">14sp</dimen>
-    <dimen name="text_H4">34sp</dimen>
-    <dimen name="text_H5">24sp</dimen>
+    <dimen name="text_size_smaller5">14sp</dimen>
+    <dimen name="text_size_smaller4">16sp</dimen>
+    <dimen name="text_size_smaller3">18sp</dimen>
+    <dimen name="text_size_smaller2">20sp</dimen>
+    <dimen name="text_size_smaller1">22sp</dimen>
+    <dimen name="text_size_normal">24sp</dimen>
+    <dimen name="text_size_larger1">26sp</dimen>
+    <dimen name="text_size_larger2">28sp</dimen>
+    <dimen name="text_size_larger3">32sp</dimen>
+    <dimen name="text_size_largest">36sp</dimen>
 </resources>
