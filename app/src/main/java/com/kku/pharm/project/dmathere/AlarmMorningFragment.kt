@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
+import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
@@ -31,7 +32,7 @@ import kotlin.collections.ArrayList
 
 class AlarmMorningFragment : Fragment() {
     private var isAddingAction = false
-    private lateinit var calendar: Calendar
+    private var calendar: Calendar? = null
     private var myContext: FragmentActivity? = null
 
     private var alarmID: String = ""
@@ -77,12 +78,18 @@ class AlarmMorningFragment : Fragment() {
     }
 
     private fun setupView() {
-//        setupMedicineTypeSpinner()
         btn_set_alarm.setOnClickListener {
             showTimePickerDialog()
         }
 
         btn_save.setOnClickListener {
+            firstMedAmount = et_first_medicine_amount.text.toString()
+
+            secondMedAmount = if (et_second_medicine_amount.text.isNullOrBlank()) {
+                null
+            } else et_second_medicine_amount.text.toString()
+
+
             setAlarm(calendar)
         }
 
@@ -106,7 +113,7 @@ class AlarmMorningFragment : Fragment() {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
-    private fun setupSpinner(){
+    private fun setupSpinner() {
         val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, categories)
         arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
 
@@ -145,32 +152,37 @@ class AlarmMorningFragment : Fragment() {
         }
     }
 
-    private fun setAlarm(targetCal: Calendar) {
-        val id = System.currentTimeMillis().toInt()
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0)
-        val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.timeInMillis, pendingIntent)
-        Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
-        saveAlarmData()
-        showToast("ตั้งเวลาแจ้งเตือนสำเร็จ")
+    private fun setAlarm(targetCal: Calendar?) {
+        if (targetCal != null && !firstMedAmount.isBlank()) {
+            val id = System.currentTimeMillis().toInt()
+            val intent = Intent(context, AlarmReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0)
+            val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.timeInMillis, pendingIntent)
+            Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
+            saveAlarmData()
+            showToast("ตั้งเวลาแจ้งเตือนสำเร็จ")
+        } else {
+            if (firstMedAmount.isBlank()) {
+                createSimpleOkErrorDialog(context!!, "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่1 ก่อนกดบันทึก").show()
+            } else if (layout_second_medicine_detail.visibility == View.VISIBLE && secondMedAmount.isNullOrBlank()) {
+                createSimpleOkErrorDialog(context!!, "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่2 ก่อนกดบันทึก").show()
+            } else if (targetCal == null) {
+                createSimpleOkErrorDialog(context!!, "กรุณาเลือกเวลาแจ้งเตือนก่อนกดบันทึก").show()
+            }
+
+        }
     }
 
     private fun saveAlarmData() {
-        firstMedAmount = et_first_medicine_amount.text.toString()
-
-        secondMedAmount = if (et_second_medicine_amount.text.isNullOrBlank()) {
-            null
-        } else et_second_medicine_amount.text.toString()
-
         val alarmInfo = AlarmTimeInformation(
                 alarmID,
                 firstMed,
                 firstMedAmount,
                 secondMed,
                 secondMedAmount,
-                calendar.get(HOUR_OF_DAY),
-                calendar.get(MINUTE),
+                calendar!!.get(HOUR_OF_DAY),
+                calendar!!.get(MINUTE),
                 Constant.TIME_DESC_MORNING,
                 false
         )
@@ -221,18 +233,18 @@ class AlarmMorningFragment : Fragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onOnTimeSetEvent(event: OnTimeSetEvent) {
         calendar = event.calendar
-        calendar.set(SECOND, 0)
+
         Log.d("test time", event.calendar.time.toString())
 
         TransitionManager.beginDelayedTransition(layout_alarm_time)
         layout_time.visibility = View.VISIBLE
 
-        dayOfTheWeek = calendar.get(DAY_OF_WEEK)
-        day = calendar.get(DAY_OF_MONTH)
-        month = calendar.get(MONTH)
-        year = calendar.get(YEAR)
-        hour = calendar.get(HOUR_OF_DAY)
-        minute = calendar.get(MINUTE)
+        dayOfTheWeek = calendar!!.get(DAY_OF_WEEK)
+        day = calendar!!.get(DAY_OF_MONTH)
+        month = calendar!!.get(MONTH)
+        year = calendar!!.get(YEAR)
+        hour = calendar!!.get(HOUR_OF_DAY)
+        minute = calendar!!.get(MINUTE)
 
         alarmID = "$dayOfTheWeek$day$month$year$hour$minute"
         Log.d("test alarm id", alarmID)

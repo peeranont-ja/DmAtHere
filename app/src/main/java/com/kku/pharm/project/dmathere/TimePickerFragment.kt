@@ -32,6 +32,7 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
             val cal = Calendar.getInstance()
             cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
             cal.set(Calendar.MINUTE, minute)
+            cal.set(Calendar.SECOND, 0)
 
             EventBus.getDefault().post(OnTimeSetEvent(cal))
         }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_spinner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="@dimen/text_size_smaller3"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:alpha="0.5"
+        android:text="Message"
+        android:textSize="@dimen/text_size_smaller2"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/text_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:alpha="0.5"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="Negative"
+            android:textSize="@dimen/text_size_smaller3"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/text_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="Positive"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_smaller3"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</LinearLayout>
