@@ -22,6 +22,7 @@ import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformationList
 import com.kku.pharm.project.dmathere.utils.AlarmUtils
+import com.kku.pharm.project.dmathere.utils.AlarmUtils.cancelAlarm
 import kotlinx.android.synthetic.main.fragment_alarm_morning.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -35,6 +36,9 @@ class AlarmMorningFragment : Fragment() {
     private var calendar: Calendar? = null
     private var myContext: FragmentActivity? = null
 
+    private var previousAlarmIndex: Int? = null
+    private var previousAlarmRequestCode: Int? = null
+
     private var requestCodeID: Int = 0
     private var firstMed: String = ""
     private var firstMedAmount: String = ""
@@ -45,7 +49,7 @@ class AlarmMorningFragment : Fragment() {
     private var hour: Int = 0
     private var minute: Int = 0
 
-    private val categories = arrayOf(
+    private val medicineList = arrayOf(
             "NovoRapid® Penfill®",
             "Insulatard® Penfill®",
             "Actrapid® Penfill®",
@@ -57,6 +61,14 @@ class AlarmMorningFragment : Fragment() {
             "Actrapid® HM",
             "Insulatard® HM"
     )
+
+    private var perfData: AlarmTimeInformationList? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        PreferenceHelper.initPreferenceHelper(context!!)
+        perfData = PreferenceHelper.alarmTimeInformationList
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -75,13 +87,15 @@ class AlarmMorningFragment : Fragment() {
     }
 
     private fun setupView() {
+        setupSpinner()
+        setupExistingData()
+
         btn_set_alarm.setOnClickListener {
             showTimePickerDialog()
         }
 
         btn_save.setOnClickListener {
             firstMedAmount = et_first_medicine_amount.text.toString()
-
             secondMedAmount = if (et_second_medicine_amount.text.isNullOrBlank()) {
                 null
             } else et_second_medicine_amount.text.toString()
@@ -106,8 +120,6 @@ class AlarmMorningFragment : Fragment() {
                                                            isChecked ->
             isRepeated = isChecked
         }
-
-        setupSpinner()
     }
 
     private fun showToast(message: String) {
@@ -115,38 +127,81 @@ class AlarmMorningFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, categories)
+        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, medicineList)
         arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
 
         spinner_first_medicine.adapter = arrayAdapter
         spinner_first_medicine.setSelection(0)
         spinner_first_medicine.prompt = "กรุณาเลือกยาฉีดอินซูลิน"
         spinner_first_medicine.gravity = Gravity.CENTER
+        spinner_first_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                firstMed = medicineList[0]
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                firstMed = medicineList[position]
+            }
+        }
 
         spinner_second_medicine.adapter = arrayAdapter
         spinner_second_medicine.setSelection(0)
         spinner_second_medicine.prompt = "กรุณาเลือกยาฉีดอินซูลิน"
         spinner_second_medicine.gravity = Gravity.CENTER
-
-        spinner_first_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                firstMed = categories[0]
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                firstMed = categories[position]
-            }
-        }
-
         spinner_second_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 if (layout_second_medicine_detail.visibility == View.VISIBLE) {
-                    secondMed = categories[0]
+                    secondMed = medicineList[0]
                 }
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                secondMed = categories[position]
+                secondMed = medicineList[position]
+            }
+        }
+    }
+
+    private fun setupExistingData() {
+        if (perfData != null) {
+            val list = perfData!!.alarmList
+            val index = list.indices.find {
+                list[it].timeDescription == Constant.TIME_DESC_MORNING
+                        && list[it].status == Constant.STATUS_ACTIVE
+            }
+            if (index != null) {
+                previousAlarmIndex = index
+                previousAlarmRequestCode = list[index].requestCodeID
+
+                spinner_first_medicine.setSelection(medicineList.indexOf(list[index].firstMed))
+                et_first_medicine_amount.setText(list[index].firstMedAmount)
+
+                layout_time.visibility = View.VISIBLE
+                calendar = list[index].calendar
+                hour = list[index].hour
+                minute = list[index].minute
+                tv_hour.text = if (hour < 10 || hour.toString().length == 1) {
+                    "0$hour"
+                } else hour.toString()
+
+                tv_minute.text = if (minute < 10 || minute.toString().length == 1) {
+                    "0$minute"
+                } else minute.toString()
+
+                checkBox_repeat_alarm.visibility = View.VISIBLE
+                checkBox_repeat_alarm.isChecked = list[index].isRepeated
+                btn_set_alarm.text = "แก้ไขเวลา"
+
+                if (list[index].secondMed != null && list[index].secondMedAmount != null) {
+                    spinner_second_medicine.setSelection(medicineList.indexOf(list[index].secondMed))
+                    et_second_medicine_amount.setText(list[index].secondMedAmount)
+
+                    layout_second_medicine_detail.visibility = View.VISIBLE
+                    img_second_medicine_action.setImageResource(R.mipmap.ic_remove)
+                    isAddingAction = true
+
+                    layout_time.visibility = View.VISIBLE
+                    checkBox_repeat_alarm.visibility = View.VISIBLE
+                }
             }
         }
     }
@@ -193,25 +248,26 @@ class AlarmMorningFragment : Fragment() {
                 secondMedAmount,
                 calendar!!.get(HOUR_OF_DAY),
                 calendar!!.get(MINUTE),
+                calendar!!,
                 Constant.TIME_DESC_MORNING,
-                false,
+                isRepeated,
                 Constant.STATUS_ACTIVE
         )
 
-        PreferenceHelper.initPreferenceHelper(context!!)
-
-        val perfData = PreferenceHelper.alarmTimeInformationList
         var list: ArrayList<AlarmTimeInformation> = ArrayList()
         if (perfData != null) {
-            list = perfData.alarmList
+            list = perfData!!.alarmList
             list.add(alarmInfo)
         } else {
             list.add(alarmInfo)
         }
         PreferenceHelper.alarmTimeInformationList = AlarmTimeInformationList(list)
+        deletePreviousAlarmData()
 
         val alarmList = PreferenceHelper.alarmTimeInformationList
-        for (i in 0 until alarmList?.alarmList!!.size) {
+        previousAlarmIndex = alarmList!!.alarmList.lastIndex
+        previousAlarmRequestCode = alarmList.alarmList[previousAlarmIndex!!].requestCodeID
+        for (i in 0 until alarmList.alarmList.size) {
             Log.d("test perfs $i", alarmList.alarmList[i].requestCodeID.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].firstMed)
             Log.d("test perfs $i", alarmList.alarmList[i].firstMedAmount)
@@ -219,9 +275,25 @@ class AlarmMorningFragment : Fragment() {
             Log.d("test perfs $i", alarmList.alarmList[i].secondMedAmount.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].hour.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].minute.toString())
+            Log.d("test perfs $i", alarmList.alarmList[i].calendar.time.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].timeDescription)
             Log.d("test perfs $i", alarmList.alarmList[i].isRepeated.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].status)
+        }
+    }
+
+    private fun deletePreviousAlarmData() {
+        val list = PreferenceHelper.alarmTimeInformationList?.alarmList
+        if (!list.isNullOrEmpty()
+                && previousAlarmIndex != null) {
+            list.removeAt(previousAlarmIndex!!)
+            PreferenceHelper.alarmTimeInformationList = AlarmTimeInformationList(list)
+
+            if (previousAlarmRequestCode != null) {
+                cancelAlarm(context!!, previousAlarmRequestCode!!)
+            }
+
+            Log.d("test delete previous data", "Delete success.")
         }
     }
 

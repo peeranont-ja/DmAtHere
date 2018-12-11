@@ -41,7 +41,9 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
         pm = getSystemService(Context.POWER_SERVICE) as PowerManager
         km = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         kl = km.newKeyguardLock("ShowEventDialog")
-        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.ON_AFTER_RELEASE, "ShowEventDialog")
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+                or PowerManager.ACQUIRE_CAUSES_WAKEUP
+                or PowerManager.ON_AFTER_RELEASE, "ShowEventDialog")
         wl.acquire(10 * 60 * 1000L /*10 minutes*/) //wake up the screen
         kl.disableKeyguard()
 
@@ -68,7 +70,9 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
                         && !list[index].secondMedAmount.isNullOrBlank()) {
                     second_medicine_title.visibility = View.VISIBLE
                     second_medicine_desc.visibility = View.VISIBLE
-                    second_medicine_desc.text = concatDescription(list[index].secondMed!!, list[index].secondMedAmount!!)
+                    second_medicine_desc.text = concatDescription(
+                            list[index].secondMed!!,
+                            list[index].secondMedAmount!!)
                 }
             }
         }
@@ -93,7 +97,6 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.btnStop) {
-//            AlarmActivity.listValue.removeAt(0)
             this.finish()
         }
     }
@@ -101,14 +104,14 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         wl.acquire()//must call this!
-        var notif: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
-        if (notif == null) {
-            notif = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-            if (notif == null) {
-                notif = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        var notification: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+        if (notification == null) {
+            notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            if (notification == null) {
+                notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             }
         }
-        r = RingtoneManager.getRingtone(applicationContext, notif)
+        r = RingtoneManager.getRingtone(applicationContext, notification)
         r.play()
 
 

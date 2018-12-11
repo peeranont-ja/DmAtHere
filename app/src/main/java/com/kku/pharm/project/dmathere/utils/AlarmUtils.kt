@@ -8,12 +8,13 @@ import android.util.Log
 import com.kku.pharm.project.dmathere.ui.AlarmReceiver
 import java.util.*
 
+
 object AlarmUtils {
 
     fun setAlarm(context: Context,
-                 requestCode : Int,
+                 requestCode: Int,
                  calendar: Calendar,
-                 isRepeated: Boolean){
+                 isRepeated: Boolean) {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("requestCode", requestCode)
         val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
@@ -33,5 +34,14 @@ object AlarmUtils {
                     pendingIntent)
             Log.d("test alarm", calendar.time.toString() + ": Set Alarm success.")
         }
+    }
+
+    fun cancelAlarm(context: Context,
+                    requestCode: Int) {
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(pendingIntent)
+        Log.d("test alarm",": Cancel Alarm success.")
     }
 }
