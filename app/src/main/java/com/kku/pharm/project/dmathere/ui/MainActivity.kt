@@ -7,12 +7,10 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import com.kku.pharm.project.dmathere.R
+import com.kku.pharm.project.dmathere.data.Constant
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private val PERMISSIONS_REQUEST_CODE = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,14 +18,23 @@ class MainActivity : AppCompatActivity() {
         setupView()
     }
 
-    private fun setupView(){
+    private fun setupView() {
         btn_alarm.setOnClickListener {
             goToAlarmPage()
         }
+
+        btn_medicine_type.setOnClickListener {
+            goToMedicineListPage()
+        }
     }
 
-    private fun goToAlarmPage(){
+    private fun goToAlarmPage() {
         val intent = Intent(this, AlarmActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToMedicineListPage() {
+        val intent = Intent(this, MedicineListActivity::class.java)
         startActivity(intent)
     }
 
@@ -47,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                             android.Manifest.permission.ACCESS_NETWORK_STATE,
                             android.Manifest.permission.READ_PHONE_STATE,
                             android.Manifest.permission.ACCESS_WIFI_STATE),
-                    PERMISSIONS_REQUEST_CODE)
+                    Constant.PERMISSIONS_REQUEST_CODE)
         } else {
             Log.e("PERMISSION CHECK", "PERMISSION GRANTED")
         }
