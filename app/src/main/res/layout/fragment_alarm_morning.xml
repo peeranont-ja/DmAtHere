@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".AlarmActivity">
+    tools:context=".ui.AlarmActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -314,7 +314,7 @@
                         android:layout_gravity="center_horizontal"
                         android:buttonTint="@color/colorPrimary"
                         android:text="ปลุกซ้ำทุกวัน"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/btn_set_alarm"

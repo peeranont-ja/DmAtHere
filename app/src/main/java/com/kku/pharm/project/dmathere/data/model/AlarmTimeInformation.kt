@@ -1,7 +1,7 @@
 package com.kku.pharm.project.dmathere.data.model
 
 class AlarmTimeInformation (
-        var id: String,
+        var requestCodeID: Int,
         var firstMed: String,
         var firstMedAmount: String,
         var secondMed: String ?= null,

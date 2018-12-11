@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere
+package com.kku.pharm.project.dmathere.ui
 
 import android.app.Dialog
 import android.app.TimePickerDialog

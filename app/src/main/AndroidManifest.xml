@@ -17,7 +17,7 @@
         android:theme="@style/MyMaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AlarmActivity"
+            android:name=".ui.AlarmActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyMaterialTheme"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".ShowEventDialog"
+            android:name=".ui.ShowEventDialog"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".ui.AlarmReceiver"
             android:process=":remote" />
     </application>
 

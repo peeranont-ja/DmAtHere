@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:lineSpacingExtra="0.5dp"
         android:text="ชื่อยา \nปริมาณ"
         android:textSize="@dimen/text_size_smaller2" />
 
@@ -54,8 +55,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="#000000"
         android:text="ยาฉีดอินซูลิน ชนิดที่ 2"
+        android:textColor="#000000"
         android:textSize="@dimen/text_size_smaller4"
         android:visibility="gone" />
 
@@ -65,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:lineSpacingExtra="0.5dp"
         android:text="ชื่อยา \nปริมาณ"
         android:textSize="@dimen/text_size_smaller2"
         android:visibility="gone" />
@@ -74,8 +76,8 @@
         android:id="@+id/btnStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="ปิดหน้าต่างนี้"
         android:textColor="@android:color/white" />

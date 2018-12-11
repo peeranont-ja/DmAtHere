@@ -1,10 +1,7 @@
-package com.kku.pharm.project.dmathere
+package com.kku.pharm.project.dmathere.ui
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
@@ -14,13 +11,17 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
+import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformationList
+import com.kku.pharm.project.dmathere.utils.AlarmUtils
 import kotlinx.android.synthetic.main.fragment_alarm_morning.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -29,13 +30,12 @@ import java.util.*
 import java.util.Calendar.*
 import kotlin.collections.ArrayList
 
-
 class AlarmMorningFragment : Fragment() {
     private var isAddingAction = false
     private var calendar: Calendar? = null
     private var myContext: FragmentActivity? = null
 
-    private var alarmID: String = ""
+    private var requestCodeID: Int = 0
     private var firstMed: String = ""
     private var firstMedAmount: String = ""
     private var secondMed: String? = null
@@ -44,10 +44,6 @@ class AlarmMorningFragment : Fragment() {
 
     private var hour: Int = 0
     private var minute: Int = 0
-    private var day: Int = 0
-    private var dayOfTheWeek: Int = 0
-    private var month: Int = 0
-    private var year: Int = 0
 
     private val categories = arrayOf(
             "NovoRapid® Penfill®",
@@ -111,7 +107,6 @@ class AlarmMorningFragment : Fragment() {
             isRepeated = isChecked
         }
 
-
         setupSpinner()
     }
 
@@ -153,49 +148,45 @@ class AlarmMorningFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 secondMed = categories[position]
             }
-
         }
     }
 
-    private fun setAlarm(targetCal: Calendar?) {
-        if (targetCal != null && !firstMedAmount.isBlank()) {
+    private fun setAlarm(calendar: Calendar?) {
+        if (calendar != null && !firstMedAmount.isBlank()) {
             val id = System.currentTimeMillis().toInt()
-            val intent = Intent(context, AlarmReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0)
-            val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-            if (isRepeated) {
-                alarmManager.setRepeating(
-                        AlarmManager.RTC_WAKEUP,
-                        targetCal.timeInMillis,
-                        AlarmManager.INTERVAL_DAY,
-                        pendingIntent)
-                Log.d("test alarm", targetCal.time.toString() + ": Set Repeat Alarm success.")
-            } else {
-                alarmManager.set(
-                        AlarmManager.RTC_WAKEUP,
-                        targetCal.timeInMillis,
-                        pendingIntent)
-                Log.d("test alarm", targetCal.time.toString() + ": Set Alarm success.")
-            }
-
+            AlarmUtils.setAlarm(
+                    context!!,
+                    id,
+                    calendar,
+                    isRepeated
+            )
+            requestCodeID = id
             saveAlarmData()
             showToast("ตั้งเวลาแจ้งเตือนสำเร็จ")
         } else {
             if (firstMedAmount.isBlank()) {
-                createSimpleOkErrorDialog(context!!, "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่1 ก่อนกดบันทึก").show()
-            } else if (layout_second_medicine_detail.visibility == View.VISIBLE && secondMedAmount.isNullOrBlank()) {
-                createSimpleOkErrorDialog(context!!, "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่2 ก่อนกดบันทึก").show()
-            } else if (targetCal == null) {
-                createSimpleOkErrorDialog(context!!, "กรุณาเลือกเวลาแจ้งเตือนก่อนกดบันทึก").show()
+                createSimpleOkErrorDialog(
+                        context!!,
+                        "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่1 ก่อนกดบันทึก")
+                        .show()
+            } else if (layout_second_medicine_detail.visibility == View.VISIBLE
+                    && secondMedAmount.isNullOrBlank()) {
+                createSimpleOkErrorDialog(
+                        context!!,
+                        "กรุณากรอกปริมาณยาฉีดอินซูลิน ชนิดที่2 ก่อนกดบันทึก")
+                        .show()
+            } else if (calendar == null) {
+                createSimpleOkErrorDialog(
+                        context!!,
+                        "กรุณาเลือกเวลาแจ้งเตือนก่อนกดบันทึก")
+                        .show()
             }
-
         }
     }
 
     private fun saveAlarmData() {
         val alarmInfo = AlarmTimeInformation(
-                alarmID,
+                requestCodeID,
                 firstMed,
                 firstMedAmount,
                 secondMed,
@@ -221,7 +212,7 @@ class AlarmMorningFragment : Fragment() {
 
         val alarmList = PreferenceHelper.alarmTimeInformationList
         for (i in 0 until alarmList?.alarmList!!.size) {
-            Log.d("test perfs $i", alarmList.alarmList[i].id)
+            Log.d("test perfs $i", alarmList.alarmList[i].requestCodeID.toString())
             Log.d("test perfs $i", alarmList.alarmList[i].firstMed)
             Log.d("test perfs $i", alarmList.alarmList[i].firstMedAmount)
             Log.d("test perfs $i", alarmList.alarmList[i].secondMed.toString())
@@ -254,22 +245,13 @@ class AlarmMorningFragment : Fragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onOnTimeSetEvent(event: OnTimeSetEvent) {
         calendar = event.calendar
-
+        hour = calendar!!.get(HOUR_OF_DAY)
+        minute = calendar!!.get(MINUTE)
         Log.d("test time", event.calendar.time.toString())
 
         TransitionManager.beginDelayedTransition(layout_alarm_time)
         layout_time.visibility = View.VISIBLE
         checkBox_repeat_alarm.visibility = View.VISIBLE
-
-        dayOfTheWeek = calendar!!.get(DAY_OF_WEEK)
-        day = calendar!!.get(DAY_OF_MONTH)
-        month = calendar!!.get(MONTH)
-        year = calendar!!.get(YEAR)
-        hour = calendar!!.get(HOUR_OF_DAY)
-        minute = calendar!!.get(MINUTE)
-
-        alarmID = "$dayOfTheWeek$day$month$year$hour$minute"
-        Log.d("test alarm id", alarmID)
 
         tv_hour.text = if (hour < 10 || hour.toString().length == 1) {
             "0$hour"
@@ -278,11 +260,6 @@ class AlarmMorningFragment : Fragment() {
         tv_minute.text = if (minute < 10 || minute.toString().length == 1) {
             "0$minute"
         } else minute.toString()
-
-//        val amPM = calendar.get(AM_PM)
-//        tv_am_pm.text = if (amPM == 0) {
-//            "AM"
-//        } else "PM"
 
         btn_set_alarm.text = if (tv_hour.visibility == View.VISIBLE) {
             "แก้ไขเวลา"

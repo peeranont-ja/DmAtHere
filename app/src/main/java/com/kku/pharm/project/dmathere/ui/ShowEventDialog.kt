@@ -1,10 +1,9 @@
-package com.kku.pharm.project.dmathere
+package com.kku.pharm.project.dmathere.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
-import android.graphics.Color
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
@@ -18,12 +17,12 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import kotlinx.android.synthetic.main.activity_notification.*
 import java.util.*
 
 internal class ShowEventDialog : Activity(), View.OnClickListener {
-
     private lateinit var pm: PowerManager
     private lateinit var wl: PowerManager.WakeLock
     private lateinit var km: KeyguardManager
@@ -31,9 +30,12 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     private lateinit var r: Ringtone
 
     private lateinit var btnStop: Button
+
     @SuppressLint("InvalidWakeLockTag")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val requestCode = intent.getIntExtra("requestCode", 1)
+
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         Log.i("ShowEventDialog", "onCreate() in DismissLock")
         pm = getSystemService(Context.POWER_SERVICE) as PowerManager
@@ -49,23 +51,16 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
         btnStop.setOnClickListener(this)
 
         val calendar = Calendar.getInstance()
-        val dayOfTheWeek = calendar.get(Calendar.DAY_OF_WEEK)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
-        val year = calendar.get(Calendar.YEAR)
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
 
-        val alarmID = "$dayOfTheWeek$day$month$year$hour$minute"
         Log.d("test event time", calendar.time.toString())
-        Log.d("test event id", alarmID)
+        Log.d("test event id", requestCode.toString())
 
         PreferenceHelper.initPreferenceHelper(this)
         val perfData = PreferenceHelper.alarmTimeInformationList
         val list = perfData?.alarmList
 
         if (!list.isNullOrEmpty()) {
-            val index = list.indices.find { list[it].id == alarmID }
+            val index = list.indices.find { list[it].requestCodeID == requestCode }
             if (index != null) {
                 first_medicine_desc.text = concatDescription(list[index].firstMed, list[index].firstMedAmount)
 
@@ -126,4 +121,5 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
             r.stop()
         }
     }
+
 }
