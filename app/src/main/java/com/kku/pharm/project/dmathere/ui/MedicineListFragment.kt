@@ -12,6 +12,7 @@ import com.kku.pharm.project.dmathere.R
 import kotlinx.android.synthetic.main.fragment_medicine_list.*
 import android.widget.TextView
 import android.app.Activity
+import android.content.Intent
 import com.kku.pharm.project.dmathere.data.Constant
 
 
@@ -57,7 +58,13 @@ class MedicineListFragment : Fragment() {
                                                                                    position,
                                                                                    id ->
             Toast.makeText(context, "Grid Item " + (position + 1) + " Selected", Toast.LENGTH_LONG).show()
+            goToMedicineDetailPage()
         }
+    }
+
+    private fun goToMedicineDetailPage() {
+        val intent = Intent(context, MedicineDetailActivity::class.java)
+        startActivity(intent)
     }
 
     class ImageAdapterGridView(private val context: Context,

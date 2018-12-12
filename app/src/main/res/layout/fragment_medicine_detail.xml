@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_medicine_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Medicine Name"
+                android:textSize="@dimen/text_size_larger3"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/img_medicine"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/img_med_1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ประเภทกลุ่มยา"
+                    android:textSize="@dimen/text_size_smaller4"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_medicine_type_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="2"
+                    android:text="Medicine Type Desc"
+                    android:textSize="@dimen/text_size_smaller4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ข้อบ่งใช้"
+                    android:textSize="@dimen/text_size_smaller4"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_medicine_suggestion_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="2"
+                    android:text="Medicine Suggestion"
+                    android:textSize="@dimen/text_size_smaller4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="การเก็บรักษา"
+                    android:textSize="@dimen/text_size_smaller4"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_medicine_pre_use_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Medicine Suggestion Pre using"
+                        android:textSize="@dimen/text_size_smaller4" />
+
+                    <TextView
+                        android:id="@+id/tv_medicine_post_use_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Medicine Suggestion Post using"
+                        android:textSize="@dimen/text_size_smaller4" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_how_to"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="10dp"
+                android:text="วิธีการฉีดอินซูลิน\nโดยใช้ปากกาอินซูลิน"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_smaller3" />
+
+            <Button
+                android:id="@+id/btn_effect"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="16dp"
+                android:text="อาการข้างเคียงจากยา\nและข้อควรปฏิบัติเมื่อเกิดอาการข้างเคียง"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_smaller3" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

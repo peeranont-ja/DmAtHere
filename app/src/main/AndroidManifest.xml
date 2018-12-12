@@ -39,7 +39,8 @@
             android:name=".ui.AlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".ui.MedicineListActivity"></activity>
+        <activity android:name=".ui.MedicineListActivity" />
+        <activity android:name=".ui.MedicineDetailActivity"></activity>
     </application>
 
 </manifest>
