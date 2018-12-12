@@ -19,6 +19,6 @@
         android:gravity="center"
         android:padding="8dp"
         android:textAlignment="center"
-        android:textSize="@dimen/text_size_smaller3" />
+        android:textSize="@dimen/text_size_smaller4" />
 
 </LinearLayout>

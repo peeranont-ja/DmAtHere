@@ -45,6 +45,12 @@ class MedicineDetailFragment : Fragment() {
         tv_medicine_usage_desc.text = Constant.medicineDataList[index].usage
         tv_medicine_pre_use_desc.text = Constant.medicineDataList[index].drugStoragePreUsing
         tv_medicine_post_use_desc.text = Constant.medicineDataList[index].drugStoragePostUsing
+
+        if (Constant.medicineDataList[index].isPenfill) {
+            tv_post_using_title.text = "ระหว่างใช้งาน (อินซูลินอยู่ในปากกา) :"
+        } else {
+            tv_post_using_title.text = "ระหว่างใช้งาน :"
+        }
     }
 
 }
