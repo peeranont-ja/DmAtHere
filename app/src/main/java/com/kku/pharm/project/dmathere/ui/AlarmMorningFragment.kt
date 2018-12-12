@@ -23,7 +23,6 @@ import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
 import com.kku.pharm.project.dmathere.utils.AlarmUtils
 import com.kku.pharm.project.dmathere.utils.AlarmUtils.cancelAlarm
-import com.kku.pharm.project.dmathere.utils.DataFormatter
 import com.kku.pharm.project.dmathere.utils.DataFormatter.convertOneDigitToTwoDigit
 import kotlinx.android.synthetic.main.fragment_alarm_morning.*
 import org.greenrobot.eventbus.EventBus
@@ -195,7 +194,6 @@ class AlarmMorningFragment : Fragment() {
                     context!!,
                     id,
                     calendar,
-                    timeDesc,
                     isRepeated
             )
             requestCodeID = id
@@ -238,7 +236,7 @@ class AlarmMorningFragment : Fragment() {
         )
 
         PreferenceHelper.alarmTimeMorningInfo = currentAlarmInfo
-        deletePreviousAlarmData()
+        cancelPreviousAlarm()
 
         val currentMorningAlarmData = PreferenceHelper.alarmTimeMorningInfo
         if (currentMorningAlarmData != null) {
@@ -257,10 +255,10 @@ class AlarmMorningFragment : Fragment() {
 
     }
 
-    private fun deletePreviousAlarmData() {
+    private fun cancelPreviousAlarm() {
         if (previousAlarmData != null) {
             cancelAlarm(context!!, previousAlarmData!!.requestCodeID)
-            Log.d("test delete previous data", "Delete success.")
+            Log.d("test cancel previous data", "Cancel success.")
         }
     }
 

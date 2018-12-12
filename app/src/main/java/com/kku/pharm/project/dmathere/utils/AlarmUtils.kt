@@ -14,11 +14,9 @@ object AlarmUtils {
     fun setAlarm(context: Context,
                  requestCode: Int,
                  calendar: Calendar,
-                 timeDesc: String,
                  isRepeated: Boolean) {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("requestCode", requestCode)
-        intent.putExtra("timeDesc", timeDesc)
         val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 

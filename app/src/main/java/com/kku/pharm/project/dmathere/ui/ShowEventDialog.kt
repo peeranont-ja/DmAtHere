@@ -33,7 +33,6 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val requestCode = intent.getIntExtra("requestCode", 1)
-        val timeDesc = intent.getStringExtra("timeDesc")
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         Log.i("ShowEventDialog", "onCreate() in DismissLock")
@@ -57,14 +56,18 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
 
         PreferenceHelper.initPreferenceHelper(this)
 
-        val alarmData = when (timeDesc) {
-            Constant.TIME_DESC_MORNING -> PreferenceHelper.alarmTimeMorningInfo
-            Constant.TIME_DESC_AFTERNOON -> PreferenceHelper.alarmTimeAfternoonInfo
-            Constant.TIME_DESC_EVENING -> PreferenceHelper.alarmTimeEveningInfo
-            Constant.TIME_DESC_NIGHT -> PreferenceHelper.alarmTimeNightInfo
-            else -> {
-                null
-            }
+        val morningAlarmData = PreferenceHelper.alarmTimeMorningInfo
+        val afternoonAlarmData = PreferenceHelper.alarmTimeAfternoonInfo
+        val eveningAlarmData = PreferenceHelper.alarmTimeEveningInfo
+        val nightAlarmData = PreferenceHelper.alarmTimeNightInfo
+
+
+        val alarmData = when (requestCode) {
+            morningAlarmData?.requestCodeID -> morningAlarmData
+            afternoonAlarmData?.requestCodeID -> afternoonAlarmData
+            eveningAlarmData?.requestCodeID -> eveningAlarmData
+            nightAlarmData?.requestCodeID -> nightAlarmData
+            else -> null
         }
 
         if (alarmData != null) {
@@ -76,6 +79,9 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
                 tv_second_medicine_desc.visibility = View.VISIBLE
                 tv_second_medicine_desc.text = concatDescription(alarmData.secondMed!!, alarmData.secondMedAmount!!)
             }
+        } else {
+            layout_alarm_info.visibility = View.GONE
+            tv_default_desc.visibility = View.VISIBLE
         }
     }
 
