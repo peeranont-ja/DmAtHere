@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:background="@color/white"
@@ -8,17 +8,17 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:scaleType="centerInside" />
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="8dp"
+        android:padding="8dp"
         android:textAlignment="center"
-        android:textSize="12sp" />
+        android:textSize="@dimen/text_size_smaller3" />
 
 </LinearLayout>
