@@ -18,6 +18,7 @@ import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
 import com.kku.pharm.project.dmathere.data.Constant
+import com.kku.pharm.project.dmathere.data.Constant.medicineList
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformationList
@@ -49,18 +50,7 @@ class AlarmMorningFragment : Fragment() {
     private var hour: Int = 0
     private var minute: Int = 0
 
-    private val medicineList = arrayOf(
-            "NovoRapid® Penfill®",
-            "Insulatard® Penfill®",
-            "Actrapid® Penfill®",
-            "Mixtard® Penfill®",
-            "NovoMix®",
-            "Lantus® Solostar®",
-            "Levemir® Flexpen",
-            "Mixtard® 30 HM",
-            "Actrapid® HM",
-            "Insulatard® HM"
-    )
+
 
     private var perfData: AlarmTimeInformationList? = null
 
