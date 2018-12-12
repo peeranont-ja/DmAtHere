@@ -9,14 +9,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextAppearance="@style/Toolbar.TitleText" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?attr/actionBarSize"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_larger1"
+                android:textStyle="bold" />
+        </android.support.v7.widget.Toolbar>
 
         <FrameLayout
             android:id="@+id/layout_contentContainer"

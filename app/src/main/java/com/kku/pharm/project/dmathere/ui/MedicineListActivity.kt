@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.kku.pharm.project.dmathere.R
-import kotlinx.android.synthetic.main.activity_alarm.*
+import kotlinx.android.synthetic.main.activity_medicine_list.*
+
 
 open class MedicineListActivity : AppCompatActivity() {
 

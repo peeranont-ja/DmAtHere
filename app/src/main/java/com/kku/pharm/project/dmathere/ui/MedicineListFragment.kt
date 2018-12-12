@@ -17,17 +17,6 @@ import com.kku.pharm.project.dmathere.data.Constant
 
 
 class MedicineListFragment : Fragment() {
-    private var imgArray = intArrayOf(
-            R.drawable.img_med_1,
-            R.drawable.img_med_3,
-            R.drawable.img_med_9,
-            R.drawable.img_med_2,
-            R.drawable.img_med_10,
-            R.drawable.img_med_7,
-            R.drawable.img_med_6,
-            R.drawable.img_med_4,
-            R.drawable.img_med_8,
-            R.drawable.img_med_5)
 
     companion object {
         fun newInstance(): MedicineListFragment {
@@ -51,19 +40,23 @@ class MedicineListFragment : Fragment() {
     }
 
     private fun setupView() {
-        gv_android_example.adapter = ImageAdapterGridView(context!!, imgArray, Constant.medicineList)
+        gv_android_example.adapter = ImageAdapterGridView(
+                context!!,
+                Constant.imgArray,
+                Constant.medicineNameList)
 
         gv_android_example.onItemClickListener = AdapterView.OnItemClickListener { parent,
                                                                                    v,
                                                                                    position,
                                                                                    id ->
             Toast.makeText(context, "Grid Item " + (position + 1) + " Selected", Toast.LENGTH_LONG).show()
-            goToMedicineDetailPage()
+            goToMedicineDetailPage(position)
         }
     }
 
-    private fun goToMedicineDetailPage() {
+    private fun goToMedicineDetailPage(index: Int) {
         val intent = Intent(context, MedicineDetailActivity::class.java)
+        intent.putExtra("index", index)
         startActivity(intent)
     }
 

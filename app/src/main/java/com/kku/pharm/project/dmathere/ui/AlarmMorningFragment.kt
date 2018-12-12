@@ -18,7 +18,7 @@ import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
 import com.kku.pharm.project.dmathere.data.Constant
-import com.kku.pharm.project.dmathere.data.Constant.medicineList
+import com.kku.pharm.project.dmathere.data.Constant.medicineNameList
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformationList
@@ -117,7 +117,7 @@ class AlarmMorningFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, medicineList)
+        val arrayAdapter = ArrayAdapter(context!!, R.layout.spinner_right_aligned, medicineNameList)
         arrayAdapter.setDropDownViewResource(R.layout.spinner_right_aligned)
 
         spinner_first_medicine.adapter = arrayAdapter
@@ -126,11 +126,11 @@ class AlarmMorningFragment : Fragment() {
         spinner_first_medicine.gravity = Gravity.CENTER
         spinner_first_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                firstMed = medicineList[0]
+                firstMed = medicineNameList[0]
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                firstMed = medicineList[position]
+                firstMed = medicineNameList[position]
             }
         }
 
@@ -141,12 +141,12 @@ class AlarmMorningFragment : Fragment() {
         spinner_second_medicine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 if (layout_second_medicine_detail.visibility == View.VISIBLE) {
-                    secondMed = medicineList[0]
+                    secondMed = medicineNameList[0]
                 }
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                secondMed = medicineList[position]
+                secondMed = medicineNameList[position]
             }
         }
     }
@@ -162,7 +162,7 @@ class AlarmMorningFragment : Fragment() {
                 previousAlarmIndex = index
                 previousAlarmRequestCode = list[index].requestCodeID
 
-                spinner_first_medicine.setSelection(medicineList.indexOf(list[index].firstMed))
+                spinner_first_medicine.setSelection(medicineNameList.indexOf(list[index].firstMed))
                 et_first_medicine_amount.setText(list[index].firstMedAmount)
 
                 layout_time.visibility = View.VISIBLE
@@ -182,7 +182,7 @@ class AlarmMorningFragment : Fragment() {
                 btn_set_alarm.text = "แก้ไขเวลา"
 
                 if (list[index].secondMed != null && list[index].secondMedAmount != null) {
-                    spinner_second_medicine.setSelection(medicineList.indexOf(list[index].secondMed))
+                    spinner_second_medicine.setSelection(medicineNameList.indexOf(list[index].secondMed))
                     et_second_medicine_amount.setText(list[index].secondMedAmount)
 
                     layout_second_medicine_detail.visibility = View.VISIBLE
