@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:minWidth="300dp"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -17,63 +18,70 @@
         android:textColor="#000000"
         android:textSize="@dimen/text_size_normal" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/textView2"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:gravity="center"-->
-    <!--android:textSize="20dp"-->
-    <!--android:layout_margin="10dp"-->
-    <!--android:textColor="#000000"-->
-    <!--android:text="หกหกหกห"-->
-    <!--/>-->
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/layout_alarm_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="ยาฉีดอินซูลิน ชนิดที่ 1"
-        android:textColor="#000000"
-        android:textSize="@dimen/text_size_smaller4" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="ยาฉีดอินซูลิน ชนิดที่ 1"
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_smaller4" />
+
+        <TextView
+            android:id="@+id/tv_first_medicine_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:lineSpacingExtra="0.5dp"
+            android:text="ชื่อยา \nปริมาณ"
+            android:textSize="@dimen/text_size_smaller2" />
+
+
+        <TextView
+            android:id="@+id/tv_second_medicine_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="ยาฉีดอินซูลิน ชนิดที่ 2"
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_smaller4"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_second_medicine_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:lineSpacingExtra="0.5dp"
+            android:text="ชื่อยา \nปริมาณ"
+            android:textSize="@dimen/text_size_smaller2"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/first_medicine_desc"
+        android:id="@+id/tv_default_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:lineSpacingExtra="0.5dp"
-        android:text="ชื่อยา \nปริมาณ"
-        android:textSize="@dimen/text_size_smaller2" />
-
-    <TextView
-        android:id="@+id/second_medicine_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="ยาฉีดอินซูลิน ชนิดที่ 2"
-        android:textColor="#000000"
-        android:textSize="@dimen/text_size_smaller4"
+        android:text="ถึงเวลาฉีดยา"
+        android:textSize="@dimen/text_size_normal"
         android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/second_medicine_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:lineSpacingExtra="0.5dp"
-        android:text="ชื่อยา \nปริมาณ"
-        android:textSize="@dimen/text_size_smaller2"
-        android:visibility="gone" />
-
 
     <Button
-        android:id="@+id/btnStop"
+        android:id="@+id/btn_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

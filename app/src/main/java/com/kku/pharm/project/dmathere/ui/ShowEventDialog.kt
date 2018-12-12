@@ -16,8 +16,8 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.Button
 import com.kku.pharm.project.dmathere.R
+import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import kotlinx.android.synthetic.main.activity_notification.*
 import java.util.*
@@ -29,12 +29,11 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     private lateinit var kl: KeyguardManager.KeyguardLock
     private lateinit var r: Ringtone
 
-    private lateinit var btnStop: Button
-
     @SuppressLint("InvalidWakeLockTag")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val requestCode = intent.getIntExtra("requestCode", 1)
+        val timeDesc = intent.getStringExtra("timeDesc")
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         Log.i("ShowEventDialog", "onCreate() in DismissLock")
@@ -49,8 +48,7 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
 
         setContentView(R.layout.activity_notification)
 
-        btnStop = findViewById(R.id.btnStop)
-        btnStop.setOnClickListener(this)
+        btn_stop.setOnClickListener(this)
 
         val calendar = Calendar.getInstance()
 
@@ -58,22 +56,25 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
         Log.d("test event id", requestCode.toString())
 
         PreferenceHelper.initPreferenceHelper(this)
-        val perfData = PreferenceHelper.alarmTimeInformationList
-        val list = perfData?.alarmList
 
-        if (!list.isNullOrEmpty()) {
-            val index = list.indices.find { list[it].requestCodeID == requestCode }
-            if (index != null) {
-                first_medicine_desc.text = concatDescription(list[index].firstMed, list[index].firstMedAmount)
+        val alarmData = when (timeDesc) {
+            Constant.TIME_DESC_MORNING -> PreferenceHelper.alarmTimeMorningInfo
+            Constant.TIME_DESC_AFTERNOON -> PreferenceHelper.alarmTimeAfternoonInfo
+            Constant.TIME_DESC_EVENING -> PreferenceHelper.alarmTimeEveningInfo
+            Constant.TIME_DESC_NIGHT -> PreferenceHelper.alarmTimeNightInfo
+            else -> {
+                null
+            }
+        }
 
-                if (!list[index].secondMed.isNullOrBlank()
-                        && !list[index].secondMedAmount.isNullOrBlank()) {
-                    second_medicine_title.visibility = View.VISIBLE
-                    second_medicine_desc.visibility = View.VISIBLE
-                    second_medicine_desc.text = concatDescription(
-                            list[index].secondMed!!,
-                            list[index].secondMedAmount!!)
-                }
+        if (alarmData != null) {
+            tv_first_medicine_desc.text = concatDescription(alarmData.firstMed, alarmData.firstMedAmount)
+
+            if (!alarmData.secondMed.isNullOrBlank()
+                    && !alarmData.secondMedAmount.isNullOrBlank()) {
+                tv_second_medicine_title.visibility = View.VISIBLE
+                tv_second_medicine_desc.visibility = View.VISIBLE
+                tv_second_medicine_desc.text = concatDescription(alarmData.secondMed!!, alarmData.secondMedAmount!!)
             }
         }
     }
@@ -96,7 +97,7 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if (v.id == R.id.btnStop) {
+        if (v.id == R.id.btn_stop) {
             this.finish()
         }
     }
