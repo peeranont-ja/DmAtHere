@@ -112,14 +112,14 @@ object Constant {
 
     var imgArray = intArrayOf(
             R.drawable.img_med_1,
-            R.drawable.img_med_3,
-            R.drawable.img_med_9,
             R.drawable.img_med_2,
-            R.drawable.img_med_10,
-            R.drawable.img_med_7,
-            R.drawable.img_med_6,
+            R.drawable.img_med_3,
             R.drawable.img_med_4,
+            R.drawable.img_med_5,
+            R.drawable.img_med_6,
+            R.drawable.img_med_7,
             R.drawable.img_med_8,
-            R.drawable.img_med_5)
+            R.drawable.img_med_9,
+            R.drawable.img_med_10)
 
 }
