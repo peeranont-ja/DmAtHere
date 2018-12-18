@@ -115,7 +115,7 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        wl.acquire()//must call this!
+        wl.acquire(10*60*1000L /*10 minutes*/)//must call this!
         var notification: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         if (notification == null) {
             notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
@@ -125,8 +125,6 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
         }
         r = RingtoneManager.getRingtone(applicationContext, notification)
         r.play()
-
-
     }
 
     public override fun onPause() {
