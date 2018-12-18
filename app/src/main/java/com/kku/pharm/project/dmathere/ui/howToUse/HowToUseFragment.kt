@@ -43,7 +43,7 @@ class HowToUseFragment : Fragment() {
             initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady() {
                     val videoId = "6JYIGclVQdw"
-                    initializedYouTubePlayer.loadVideo(videoId, 0f)
+                    initializedYouTubePlayer.cueVideo(videoId, 0f)
                 }
             })
             addFullScreenListenerToPlayer(initializedYouTubePlayer)
