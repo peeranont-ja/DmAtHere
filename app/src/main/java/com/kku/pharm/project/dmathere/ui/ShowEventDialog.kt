@@ -16,6 +16,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
@@ -32,6 +33,10 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     @SuppressLint("InvalidWakeLockTag")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         val requestCode = intent.getIntExtra("requestCode", 1)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)

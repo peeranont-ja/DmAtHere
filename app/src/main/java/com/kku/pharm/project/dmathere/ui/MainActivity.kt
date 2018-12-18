@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,6 +21,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        Glide.with(this)
+                .load(R.drawable.bg)
+                .into(img_bg)
+
+        Glide.with(this)
+                .load(R.drawable.ic_app_logo)
+                .apply(RequestOptions().fitCenter())
+                .into(img_logo)
+
         btn_alarm.setOnClickListener {
             goToAlarmPage()
         }

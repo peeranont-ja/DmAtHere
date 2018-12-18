@@ -7,11 +7,16 @@
     android:background="#ff6f6e"
     tools:context=".ui.MainActivity">
 
+    <ImageView
+        android:id="@+id/img_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_marginTop="40dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bg"
         android:orientation="vertical"
         android:weightSum="10">
 
@@ -22,27 +27,27 @@
             android:layout_weight="2">
 
             <!--<TextView-->
-                <!--android:id="@+id/title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:text="DM At Here"-->
-                <!--android:textColor="@android:color/white"-->
-                <!--android:textSize="40sp" />-->
+            <!--android:id="@+id/title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="DM At Here"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="40sp" />-->
 
             <ImageView
-                android:layout_centerInParent="true"
+                android:id="@+id/img_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:scaleType="center"
-                android:src="@drawable/ic_app_logo"/>
+                android:layout_centerInParent="true"
+                android:scaleType="center" />
         </RelativeLayout>
 
         <GridLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="7"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
