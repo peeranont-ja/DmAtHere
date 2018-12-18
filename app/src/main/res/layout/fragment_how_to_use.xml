@@ -16,6 +16,17 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,61 +109,5 @@
                 android:textSize="@dimen/text_size_smaller2" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="• ไขมันสะสมผิดปกติตรงตำแหน่งที่ฉีดยา"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_size_smaller2"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="4dp"
-            android:text="          เกิดจากการฉีดยาในตำแหน่งเดิมซ้ำบ่อยๆ แก้ไขโดยเปลี่ยนตำแหน่งฉีดยาให้ห่างจากการฉีดครั้งก่อนประมาณ 1 นิ้ว"
-            android:textSize="@dimen/text_size_smaller2" />
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#80FF6F6E"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_error"
-                    android:tint="@color/colorPrimaryDark" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:lineSpacingExtra="4dp"
-                    android:text="กรณีภาวะน้ำตาลในเลือดต่ำอย่างรุนแรงจนหมดสติ ควรนำผู้ป่วยส่งโรงพยาบาล"
-                    android:textSize="@dimen/text_size_smaller1"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

@@ -3,9 +3,9 @@ package com.kku.pharm.project.dmathere.ui.alarm
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.text.format.DateFormat
 import android.widget.TimePicker
+import androidx.fragment.app.DialogFragment
 import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
 import org.greenrobot.eventbus.EventBus
 import java.util.*

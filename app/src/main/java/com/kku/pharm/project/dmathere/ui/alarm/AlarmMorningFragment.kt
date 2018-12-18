@@ -3,8 +3,6 @@ package com.kku.pharm.project.dmathere.ui.alarm
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.Gravity
@@ -14,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
@@ -258,7 +258,7 @@ class AlarmMorningFragment : Fragment() {
     private fun cancelPreviousAlarm() {
         if (previousAlarmData != null) {
             cancelAlarm(context!!, previousAlarmData!!.requestCodeID)
-            Log.d("test cancel previous data", "Cancel success.")
+            Log.d("test cancel previous ", "Cancel success.")
         }
     }
 

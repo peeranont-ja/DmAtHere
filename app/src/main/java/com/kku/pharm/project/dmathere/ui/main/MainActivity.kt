@@ -2,15 +2,17 @@ package com.kku.pharm.project.dmathere.ui.main
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.ui.alarm.AlarmActivity
+import com.kku.pharm.project.dmathere.ui.howToUse.HowToUseActivity
+import com.kku.pharm.project.dmathere.ui.howToUse.HowToUseFragment
 import com.kku.pharm.project.dmathere.ui.medicine.MedicineListActivity
 import com.kku.pharm.project.dmathere.ui.sideEffect.SideEffectActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         btn_side_effect.setOnClickListener {
             goToSideEffectPage()
         }
+
+        btn_how_to.setOnClickListener {
+            goToHowToUsePage()
+        }
     }
 
     private fun goToAlarmPage() {
@@ -58,6 +64,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToSideEffectPage() {
         val intent = Intent(this, SideEffectActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToHowToUsePage() {
+        val intent = Intent(this, HowToUseActivity::class.java)
         startActivity(intent)
     }
 

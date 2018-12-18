@@ -1,8 +1,8 @@
 package com.kku.pharm.project.dmathere.ui.sideEffect
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
 import kotlinx.android.synthetic.main.activity_side_effect.*
 

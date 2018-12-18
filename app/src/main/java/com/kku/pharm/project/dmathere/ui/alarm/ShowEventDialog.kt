@@ -9,7 +9,6 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
-import android.support.v4.content.ContextCompat
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -17,6 +16,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import kotlinx.android.synthetic.main.activity_notification.*
