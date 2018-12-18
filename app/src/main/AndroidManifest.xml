@@ -17,7 +17,7 @@
         android:theme="@style/MyMaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,21 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.AlarmActivity"
+            android:name=".ui.alarm.AlarmActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyMaterialTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.ShowEventDialog"
+            android:name=".ui.alarm.ShowEventDialog"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
 
         <receiver
-            android:name=".ui.AlarmReceiver"
+            android:name=".ui.alarm.AlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".ui.MedicineListActivity" />
-        <activity android:name=".ui.MedicineDetailActivity" />
+        <activity android:name=".ui.medicine.MedicineListActivity" />
+        <activity android:name=".ui.medicine.MedicineDetailActivity" />
+        <activity android:name=".ui.sideEffect.SideEffectActivity"></activity>
     </application>
 
 </manifest>

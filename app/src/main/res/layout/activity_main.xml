@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ff6f6e"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <ImageView
         android:id="@+id/img_bg"
@@ -180,7 +180,7 @@
 
             <!-- Column 2 -->
             <android.support.v7.widget.CardView
-                android:id="@+id/btn_effect"
+                android:id="@+id/btn_side_effect"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"

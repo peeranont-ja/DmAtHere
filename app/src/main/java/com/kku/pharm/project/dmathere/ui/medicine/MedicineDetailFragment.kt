@@ -1,5 +1,6 @@
-package com.kku.pharm.project.dmathere.ui
+package com.kku.pharm.project.dmathere.ui.medicine
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
+import com.kku.pharm.project.dmathere.ui.sideEffect.SideEffectActivity
 import kotlinx.android.synthetic.main.fragment_medicine_detail.*
 
 class MedicineDetailFragment : Fragment() {
@@ -51,6 +53,14 @@ class MedicineDetailFragment : Fragment() {
         } else {
             tv_post_using_title.text = "ระหว่างใช้งาน :"
         }
+
+        btn_side_effect.setOnClickListener {
+            goToSideEffectPage()
+        }
     }
 
+    private fun goToSideEffectPage() {
+        val intent = Intent(context, SideEffectActivity::class.java)
+        startActivity(intent)
+    }
 }

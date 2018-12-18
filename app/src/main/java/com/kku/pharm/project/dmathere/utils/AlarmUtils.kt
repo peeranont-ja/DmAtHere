@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.kku.pharm.project.dmathere.ui.AlarmReceiver
+import com.kku.pharm.project.dmathere.ui.alarm.AlarmReceiver
 import java.util.*
 
 

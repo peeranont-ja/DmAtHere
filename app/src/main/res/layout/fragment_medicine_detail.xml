@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingExtra="4dp"
                     android:text="Medicine Suggestion Pre using"
                     android:textSize="@dimen/text_size_smaller3" />
 
@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingExtra="4dp"
                     android:text="Medicine Suggestion Post using"
                     android:textSize="@dimen/text_size_smaller3" />
 
@@ -160,7 +160,7 @@
                 android:textSize="@dimen/text_size_smaller3" />
 
             <Button
-                android:id="@+id/btn_effect"
+                android:id="@+id/btn_side_effect"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

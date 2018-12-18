@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.ui
+package com.kku.pharm.project.dmathere.ui.alarm
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -18,7 +18,6 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.kku.pharm.project.dmathere.R
-import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import kotlinx.android.synthetic.main.activity_notification.*
 import java.util.*

@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.ui
+package com.kku.pharm.project.dmathere.ui.medicine
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

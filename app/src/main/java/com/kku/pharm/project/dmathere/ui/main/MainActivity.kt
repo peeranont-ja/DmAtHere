@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.ui
+package com.kku.pharm.project.dmathere.ui.main
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,6 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
+import com.kku.pharm.project.dmathere.ui.alarm.AlarmActivity
+import com.kku.pharm.project.dmathere.ui.medicine.MedicineListActivity
+import com.kku.pharm.project.dmathere.ui.sideEffect.SideEffectActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         btn_medicine_type.setOnClickListener {
             goToMedicineListPage()
         }
+
+        btn_side_effect.setOnClickListener {
+            goToSideEffectPage()
+        }
     }
 
     private fun goToAlarmPage() {
@@ -46,6 +53,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToMedicineListPage() {
         val intent = Intent(this, MedicineListActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToSideEffectPage() {
+        val intent = Intent(this, SideEffectActivity::class.java)
         startActivity(intent)
     }
 

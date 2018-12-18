@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.ui
+package com.kku.pharm.project.dmathere.ui.alarm
 
 import android.content.BroadcastReceiver
 import android.content.Context
