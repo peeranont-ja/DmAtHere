@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import com.kku.pharm.project.dmathere.Events.OnTimeSetEvent
+import com.kku.pharm.project.dmathere.events.OnTimeSetEvent
 import org.greenrobot.eventbus.EventBus
 import java.util.*
 

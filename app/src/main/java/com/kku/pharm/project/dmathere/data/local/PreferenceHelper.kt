@@ -10,10 +10,10 @@ object PreferenceHelper {
     private lateinit var mPref: SharedPreferences
     private lateinit var mGson: Gson
     private const val FILE_NAME = "customer_pref_file"
-    const val ALARM_TIME_MORNING_INFORMATION = "alarm_time_morning_information"
-    const val ALARM_TIME_AFTERNOON_INFORMATION = "alarm_time_afternoon_information"
-    const val ALARM_TIME_EVENING_INFORMATION = "alarm_time_evening_information"
-    const val ALARM_TIME_NIGHT_INFORMATION = "alarm_time_night_information"
+    private const val ALARM_TIME_MORNING_INFORMATION = "alarm_time_morning_information"
+    private const val ALARM_TIME_AFTERNOON_INFORMATION = "alarm_time_afternoon_information"
+    private const val ALARM_TIME_EVENING_INFORMATION = "alarm_time_evening_information"
+    private const val ALARM_TIME_NIGHT_INFORMATION = "alarm_time_night_information"
 
     fun initPreferenceHelper(context: Context) {
         mPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)

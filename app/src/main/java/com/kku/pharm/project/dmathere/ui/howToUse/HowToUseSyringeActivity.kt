@@ -1,11 +1,10 @@
 package com.kku.pharm.project.dmathere.ui.howToUse
 
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
-import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.events.FullScreenPlayerEvent
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.playerUtils.FullScreenHelper
 import kotlinx.android.synthetic.main.activity_how_to_use.*

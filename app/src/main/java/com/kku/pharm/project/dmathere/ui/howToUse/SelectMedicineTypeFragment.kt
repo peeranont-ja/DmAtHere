@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
-import com.kku.pharm.project.dmathere.data.Constant
 import kotlinx.android.synthetic.main.fragment_select_medicine_type.*
 
 class SelectMedicineTypeFragment : Fragment() {

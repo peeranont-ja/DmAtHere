@@ -1,4 +1,4 @@
-package com.kku.pharm.project.dmathere.Events
+package com.kku.pharm.project.dmathere.events
 
 import java.util.*
 
