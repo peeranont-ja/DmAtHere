@@ -99,10 +99,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_1" />
 
         <LinearLayout
@@ -129,10 +129,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_2" />
 
         <LinearLayout
@@ -159,10 +159,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_3" />
 
         <LinearLayout
@@ -189,10 +189,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_4" />
 
         <LinearLayout
@@ -219,10 +219,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_5" />
 
         <LinearLayout
@@ -249,7 +249,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -301,10 +301,10 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_7" />
 
         <LinearLayout
@@ -371,7 +371,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -427,7 +427,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="240dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
