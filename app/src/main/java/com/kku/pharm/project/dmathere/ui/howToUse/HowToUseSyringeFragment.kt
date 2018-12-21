@@ -12,16 +12,15 @@ import com.kku.pharm.project.dmathere.events.FullScreenPlayerEvent
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.player.playerUtils.FullScreenHelper
-import kotlinx.android.synthetic.main.fragment_how_to_use.*
+import kotlinx.android.synthetic.main.fragment_how_to_use_pen_fill.*
 import org.greenrobot.eventbus.EventBus
 
-class HowToUseFragment : Fragment() {
-    private val fullScreenHelper = FullScreenHelper()
+class HowToUseSyringeFragment : Fragment() {
+//    private val fullScreenHelper = FullScreenHelper()
 
     companion object {
-        fun newInstance(): HowToUseFragment {
-            val fragment = HowToUseFragment()
+        fun newInstance(): HowToUseSyringeFragment {
+            val fragment = HowToUseSyringeFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment
@@ -32,7 +31,7 @@ class HowToUseFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_how_to_use, container, false)
+        return inflater.inflate(R.layout.fragment_how_to_use_syringe, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +41,7 @@ class HowToUseFragment : Fragment() {
         youtube_player_view.initialize({ initializedYouTubePlayer ->
             initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady() {
-                    val videoId = "6JYIGclVQdw"
+                    val videoId = "JQD6JMq_vgU"
                     initializedYouTubePlayer.cueVideo(videoId, 0f)
                 }
             })
@@ -54,15 +53,15 @@ class HowToUseFragment : Fragment() {
     private fun addFullScreenListenerToPlayer(youTubePlayer: YouTubePlayer) {
         youtube_player_view.addFullScreenListener(object : YouTubePlayerFullScreenListener {
             override fun onYouTubePlayerEnterFullScreen() {
+//                fullScreenHelper.enterFullScreen(activity!!.window.decorView)
                 EventBus.getDefault().post(FullScreenPlayerEvent(true))
-                fullScreenHelper.enterFullScreen(activity!!.window.decorView)
 
                 addCustomActionToPlayer(youTubePlayer)
             }
 
             override fun onYouTubePlayerExitFullScreen() {
+//                fullScreenHelper.exitFullScreen(activity!!.window.decorView)
                 EventBus.getDefault().post(FullScreenPlayerEvent(false))
-                fullScreenHelper.exitFullScreen(activity!!.window.decorView)
 
                 removeCustomActionFromPlayer()
             }

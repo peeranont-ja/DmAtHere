@@ -5,27 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
+import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.events.FullScreenPlayerEvent
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.playerUtils.FullScreenHelper
 import kotlinx.android.synthetic.main.activity_how_to_use.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class HowToUseActivity : AppCompatActivity() {
+class HowToUseSyringeActivity : AppCompatActivity() {
+    private val fullScreenHelper = FullScreenHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_to_use)
 
-        toolbar.title = "วิธีฉีดอินซูลิน"
+        toolbar.title = "วิธีการฉีดยาโดยใช้กระบอกฉีดยาอินซูลิน"
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         attachFragment(
                 R.id.layout_contentContainer,
-                HowToUseFragment.newInstance(),
-                HowToUseFragment::class.java.name
+                HowToUseSyringeFragment.newInstance(),
+                HowToUseSyringeFragment::class.java.name
         )
     }
 
@@ -50,7 +53,7 @@ class HowToUseActivity : AppCompatActivity() {
         }
     }
 
-        public override fun onStart() {
+    public override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
     }
@@ -62,10 +65,12 @@ class HowToUseActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onSetAlarmTimeEvent(event: FullScreenPlayerEvent) {
-        requestedOrientation = if (event.isFullScreen){
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        }else{
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        if (event.isFullScreen) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            fullScreenHelper.enterFullScreen(this.window.decorView)
+        } else {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            fullScreenHelper.exitFullScreen(this.window.decorView)
         }
     }
 }

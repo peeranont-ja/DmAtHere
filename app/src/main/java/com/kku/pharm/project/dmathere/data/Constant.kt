@@ -14,6 +14,9 @@ object Constant {
     const val STATUS_INACTIVE = "INACTIVE"
     const val STATUS_ACTIVE = "ACTIVE"
 
+    const val MED_TYPE_PEN_FILL = "penfill"
+    const val MED_TYPE_SYRINGE = "syringe"
+
     val medicineNameList = arrayOf(
             "NovoRapid® Penfill®",
             "Insulatard® Penfill®",
@@ -26,6 +29,18 @@ object Constant {
             "Actrapid® HM",
             "Insulatard® HM"
     )
+
+    var imgArray = intArrayOf(
+            R.drawable.img_med_1,
+            R.drawable.img_med_2,
+            R.drawable.img_med_3,
+            R.drawable.img_med_4,
+            R.drawable.img_med_5,
+            R.drawable.img_med_6,
+            R.drawable.img_med_7,
+            R.drawable.img_med_8,
+            R.drawable.img_med_9,
+            R.drawable.img_med_10)
 
     val medicineDataList = arrayListOf(
             Medicine(
@@ -109,17 +124,5 @@ object Constant {
                     false
             )
     )
-
-    var imgArray = intArrayOf(
-            R.drawable.img_med_1,
-            R.drawable.img_med_2,
-            R.drawable.img_med_3,
-            R.drawable.img_med_4,
-            R.drawable.img_med_5,
-            R.drawable.img_med_6,
-            R.drawable.img_med_7,
-            R.drawable.img_med_8,
-            R.drawable.img_med_9,
-            R.drawable.img_med_10)
 
 }

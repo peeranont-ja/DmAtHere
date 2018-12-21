@@ -1,7 +1,7 @@
 package com.kku.pharm.project.dmathere.ui.howToUse
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
 import kotlinx.android.synthetic.main.activity_select_medicine_type.*
@@ -12,7 +12,8 @@ class SelectMedicineTypeActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_medicine_type)
 
-        toolbar.title = "วิธีการฉีดยาอินซูลิน"
+        toolbar.title = "วิธีฉีดอินซูลิน"
+
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)

@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.ui.alarm.AlarmActivity
-import com.kku.pharm.project.dmathere.ui.howToUse.HowToUseActivity
 import com.kku.pharm.project.dmathere.ui.howToUse.SelectMedicineTypeActivity
 import com.kku.pharm.project.dmathere.ui.medicine.MedicineListActivity
 import com.kku.pharm.project.dmathere.ui.sideEffect.SideEffectActivity

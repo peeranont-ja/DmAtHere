@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kku.pharm.project.dmathere.R
+import com.kku.pharm.project.dmathere.data.Constant
 import kotlinx.android.synthetic.main.fragment_select_medicine_type.*
 
 class SelectMedicineTypeFragment : Fragment() {
@@ -33,12 +34,20 @@ class SelectMedicineTypeFragment : Fragment() {
 
     private fun setupView() {
         btn_pen_fill.setOnClickListener {
-            goToHowToUseActivity()
+            goToHowToUsePenFillActivity()
+        }
+        btn_syringe.setOnClickListener {
+            goToHowToUseSyringeActivity()
         }
     }
 
-    private fun goToHowToUseActivity() {
-        val intent = Intent(context!!, HowToUseActivity::class.java)
+    private fun goToHowToUsePenFillActivity() {
+        val intent = Intent(context!!, HowToUsePenfillActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToHowToUseSyringeActivity() {
+        val intent = Intent(context!!, HowToUseSyringeActivity::class.java)
         startActivity(intent)
     }
 }
