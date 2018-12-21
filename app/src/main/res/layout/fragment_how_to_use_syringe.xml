@@ -56,7 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
@@ -350,6 +350,88 @@
                 android:text="ใช้ฝาปิดหัวเข็ม ไม่ควรใช้แอลกอฮอล์เช็ดปลายเข็ม จากนั้นเก็บใส่กล่องที่สะอาด"
                 android:textSize="@dimen/text_size_smaller2" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:lineSpacingExtra="4dp"
+            android:text="หมายเหตุ"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_smaller2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ล้างมือด้วยสบู่และน้ำให้สะอาด แล้วเช็ดมือให้แห้ง"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_how_to_8" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ไม่ควรฉีดยาในตำแหน่งเดิมบ่อยๆ ควรเปลี่ยนตำแหน่งฉีดยาให้ห่างจากการฉีดครั้งก่อนประมาณ 1 นิ้ว"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ไม่ควรคลึงหรือนวดบริเวณที่ฉีดยาหลังฉีดยาเสร็จแล้ว"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ไม่ควรใช้เข็มฉีดยาร่วมกับผู้อื่น"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ไม่ควรใช้แอลกอฮอล์เช็ดปลายเข็มเนื่องจากจะทำให้เจ็บขณะฉีดยา"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ยาฉีดอินซูลินที่เปิดแล้วมีอายุ 28 วัน"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="-   ควรเก็บยาอินซูลินในตู้เย็นที่อุณหภูมิ 2-8 องศาเซลเซียส ตามตำแหน่ง 3"
+            android:textSize="@dimen/text_size_smaller3" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_how_to_9" />
 
     </LinearLayout>
 </ScrollView>
