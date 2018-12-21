@@ -42,7 +42,8 @@
         <activity android:name=".ui.medicine.MedicineListActivity" />
         <activity android:name=".ui.medicine.MedicineDetailActivity" />
         <activity android:name=".ui.sideEffect.SideEffectActivity" />
-        <activity android:name=".ui.howToUse.HowToUseActivity"></activity>
+        <activity android:name=".ui.howToUse.HowToUseActivity" />
+        <activity android:name=".ui.howToUse.SelectMedicineTypeActivity"></activity>
     </application>
 
 </manifest>

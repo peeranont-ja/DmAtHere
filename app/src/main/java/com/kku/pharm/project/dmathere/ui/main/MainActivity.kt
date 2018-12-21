@@ -12,7 +12,7 @@ import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.ui.alarm.AlarmActivity
 import com.kku.pharm.project.dmathere.ui.howToUse.HowToUseActivity
-import com.kku.pharm.project.dmathere.ui.howToUse.HowToUseFragment
+import com.kku.pharm.project.dmathere.ui.howToUse.SelectMedicineTypeActivity
 import com.kku.pharm.project.dmathere.ui.medicine.MedicineListActivity
 import com.kku.pharm.project.dmathere.ui.sideEffect.SideEffectActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_how_to.setOnClickListener {
-            goToHowToUsePage()
+            goToSelectMedicineTypePage()
         }
     }
 
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun goToHowToUsePage() {
-        val intent = Intent(this, HowToUseActivity::class.java)
+    private fun goToSelectMedicineTypePage() {
+        val intent = Intent(this, SelectMedicineTypeActivity::class.java)
         startActivity(intent)
     }
 

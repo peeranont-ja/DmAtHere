@@ -66,7 +66,7 @@ class AlarmMorningFragment : Fragment() {
         setupView()
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         myContext = activity as FragmentActivity
         super.onAttach(context)
     }
@@ -265,7 +265,7 @@ class AlarmMorningFragment : Fragment() {
 
     private fun showTimePickerDialog() {
         val newFragment = TimePickerFragment()
-        newFragment.show(myContext?.supportFragmentManager, newFragment.tag)
+        newFragment.show(myContext!!.supportFragmentManager, newFragment.tag)
     }
 
     override fun onStart() {
