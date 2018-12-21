@@ -38,6 +38,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:alpha="0.8"
             android:text="ขอขอบคุณวิดีโอจาก โรงพยาบาลศิครินทร์"
             android:textAlignment="center"
@@ -99,7 +100,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -129,7 +130,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -159,7 +160,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -189,7 +190,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -219,7 +220,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -249,7 +250,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -301,7 +302,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -371,7 +372,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
@@ -433,5 +434,50 @@
             android:scaleType="centerInside"
             android:src="@drawable/ic_how_to_9" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:alpha="0.8"
+                    android:text="ข้อมูลจาก"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_smaller4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:alpha="0.8"
+                    android:text="1. คู่มือทักษะตามเกณฑ์ความรู้ความสามารถทางวิชาชีพของผู้ประกอบวิชาชีพเภสัชกรรม สภาเภสัชกรรม"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_smaller4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:alpha="0.8"
+                    android:text="2. โรงพยาบาลศิริราชปิยมหาการุณย์"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_smaller4" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
