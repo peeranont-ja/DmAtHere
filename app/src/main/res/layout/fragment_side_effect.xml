@@ -107,8 +107,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
                 android:layout_marginTop="2dp"
-                android:text="      รักษาด้วยการทานผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาล เช่น น้ำหวาน หรือ ลูกอม ดังนั้น ผู้ป่วยเบาหวานควรพกผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาลติดตัวไว้เสมอ"
-                android:textSize="@dimen/text_size_smaller2" />
+                android:text="      รักษาด้วยการทานผลิตภัณฑ์ที่มีส่วนผสมของน้ำตาล เช่น น้ำหวานหรือลูกอม  ดังนั้นผู้ป่วยเบาหวานควรพกผลิตภัณฑ์ที่มีส่วนผสมของน้ำตาลติดตัวไว้เสมอ"                android:textSize="@dimen/text_size_smaller2" />
 
             </LinearLayout>
 
