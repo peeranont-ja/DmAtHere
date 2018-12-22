@@ -89,13 +89,28 @@
                 android:textSize="@dimen/text_size_smaller2"
                 android:textStyle="bold" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
-                android:text="กรณีภาวะน้ำตาลในเลือดต่ำที่ไม่รุนแรง รักษาด้วยการทานผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาล เช่น น้ำหวาน หรือ ลูกอม ดังนั้น ผู้ป่วยเบาหวานควรพกผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาลติดตัวไว้เสมอ"
+                android:text="กรณีภาวะน้ำตาลในเลือดต่ำที่ไม่รุนแรง"
                 android:textSize="@dimen/text_size_smaller2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="2dp"
+                android:text="      รักษาด้วยการทานผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาล เช่น น้ำหวาน หรือ ลูกอม ดังนั้น ผู้ป่วยเบาหวานควรพกผลิตภัณฑ์ที่มีส่วนผสม ของน้ำตาลติดตัวไว้เสมอ"
+                android:textSize="@dimen/text_size_smaller2" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
