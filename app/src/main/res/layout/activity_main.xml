@@ -53,7 +53,7 @@
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:padding="10dp"
-            android:rowCount="3">
+            android:rowCount="2">
 
             <!-- Row 1 -->
 
@@ -65,32 +65,34 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:orientation="vertical">
 
-                    <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:src="@drawable/ic_alarm_clock" />-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_bell_alarm" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="ตั้งค่าแจ้งเตือนเวลาฉีดอินซูลิน"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_size_smaller2" />
+                        android:textSize="@dimen/text_size_smaller3" />
 
                 </LinearLayout>
 
@@ -103,33 +105,35 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:orientation="vertical">
 
-                    <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:src="@drawable/ic_alarm_clock" />-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_drugs" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="ยาฉีดอินซูลิน"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_size_smaller2" />
+                        android:textSize="@dimen/text_size_smaller3" />
 
                 </LinearLayout>
 
@@ -146,33 +150,35 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:orientation="vertical">
 
-                    <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:src="@drawable/ic_alarm_clock" />-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_syringe" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="วิธีการฉีดยาอินซูลิน"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_size_smaller2" />
+                        android:textSize="@dimen/text_size_smaller3" />
 
                 </LinearLayout>
 
@@ -185,33 +191,38 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
                     android:orientation="vertical">
 
-                    <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:src="@drawable/ic_alarm_clock" />-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_warning" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="อาการข้างเคียงของยาฉีดอินซูลิน"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_size_smaller2" />
+                        android:textSize="@dimen/text_size_smaller3" />
 
                 </LinearLayout>
 
