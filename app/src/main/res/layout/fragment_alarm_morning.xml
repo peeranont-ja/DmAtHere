@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
+    android:background="#99F7D0BD"
     android:focusableInTouchMode="true"
     tools:context=".ui.alarm.AlarmActivity">
 

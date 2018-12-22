@@ -91,7 +91,7 @@ class AlarmMorningFragment : Fragment() {
             } else et_second_medicine_amount.text.toString()
 
             previousAlarmData = PreferenceHelper.alarmTimeMorningInfo
-            setAlarm(calendar, timeDesc)
+            setAlarm(calendar)
         }
 
         img_second_medicine_action.setOnClickListener {
@@ -187,7 +187,7 @@ class AlarmMorningFragment : Fragment() {
         }
     }
 
-    private fun setAlarm(calendar: Calendar?, timeDesc: String) {
+    private fun setAlarm(calendar: Calendar?) {
         if (calendar != null && !firstMedAmount.isBlank()) {
             val id = System.currentTimeMillis().toInt()
             AlarmUtils.setAlarm(

@@ -1,15 +1,361 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#99F4A548"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".ui.alarm.AlarmActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Afternoon"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:fadeScrollbars="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ชนิดยาฉีดอินซูลิน ชนิดที่ 1"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_size_smaller3" />
+
+                    <RelativeLayout
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end">
+
+                        <Spinner
+                            android:id="@+id/spinner_first_medicine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dialog" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/spinner_first_medicine"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginEnd="40dp"
+                            android:background="@color/colorPrimaryDark" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ปริมาณยาฉีดอินซูลิน"
+                            android:textSize="@dimen/text_regular_body" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/et_first_medicine_amount"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:textAlignment="center"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ยูนิต"
+                            android:textSize="@dimen/text_regular_body" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_second_medicine_action"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginEnd="16dp"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_add"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_second_medicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tv_second_medicine_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="36dp"
+                            android:layout_weight="1"
+                            android:text="ชนิดยาฉีดอินซูลิน ชนิดที่ 2"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/text_size_smaller3" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_second_medicine_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <RelativeLayout
+                                android:layout_width="240dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end">
+
+                                <Spinner
+                                    android:id="@+id/spinner_second_medicine"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:spinnerMode="dialog" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_below="@id/spinner_second_medicine"
+                                    android:layout_marginTop="-10dp"
+                                    android:layout_marginEnd="40dp"
+                                    android:background="@color/colorPrimaryDark" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ปริมาณยาฉีดอินซูลิน"
+                                    android:textSize="@dimen/text_regular_body" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1" />
+
+                                <EditText
+                                    android:id="@+id/et_second_medicine_amount"
+                                    android:layout_width="64dp"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/colorPrimaryDark"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="number"
+                                    android:maxLength="3"
+                                    android:textAlignment="center"
+                                    tools:ignore="Autofill" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.4" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ยูนิต"
+                                    android:textSize="@dimen/text_regular_body" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:id="@+id/layout_alarm_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="เวลาแจ้งเตือน"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_size_smaller3" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_hour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:textSize="@dimen/text_size_larger3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text=" : "
+                            android:textAlignment="center"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <TextView
+                            android:id="@+id/tv_minute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:textSize="@dimen/text_size_larger3" />
+
+                        <TextView
+                            android:id="@+id/tv_am_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:text="นาฬิกา"
+                            android:textSize="@dimen/text_regular_body" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox_repeat_alarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/colorPrimary"
+                            android:text="ปลุกซ้ำทุกวัน"
+                            android:textSize="@dimen/text_size_smaller4"
+                            android:visibility="visible" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_set_alarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@color/mauiBlue"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="เลือกเวลาใหม่"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_smaller3" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/mauiBlue"
+                android:paddingStart="40dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="16dp"
+                android:text="บันทึก"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_smaller3" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </RelativeLayout>
