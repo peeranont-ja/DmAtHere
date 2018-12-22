@@ -20,4 +20,7 @@
     <dimen name="text_size_larger2">28sp</dimen>
     <dimen name="text_size_larger3">32sp</dimen>
     <dimen name="text_size_largest">36sp</dimen>
+
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>
