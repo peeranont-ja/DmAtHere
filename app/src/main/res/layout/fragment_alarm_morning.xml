@@ -52,7 +52,7 @@
                     <RelativeLayout
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp">
+                        android:layout_gravity="end">
 
                         <Spinner
                             android:id="@+id/spinner_first_medicine"
@@ -165,9 +165,9 @@
                             android:visibility="gone">
 
                             <RelativeLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="240dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="60dp">
+                                android:layout_gravity="end">
 
                                 <Spinner
                                     android:id="@+id/spinner_second_medicine"
@@ -184,7 +184,6 @@
                                     android:background="@color/colorPrimaryDark" />
 
                             </RelativeLayout>
-
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -259,11 +258,11 @@
                         android:textSize="@dimen/text_size_smaller3" />
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/layout_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/tv_hour"
@@ -305,30 +304,32 @@
                         android:orientation="horizontal">
 
                         <CheckBox
-                            android:layout_gravity="center_vertical"
                             android:id="@+id/checkBox_repeat_alarm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:buttonTint="@color/colorPrimary"
-                            android:textSize="@dimen/text_size_smaller4"
                             android:text="ปลุกซ้ำทุกวัน"
+                            android:textSize="@dimen/text_size_smaller4"
                             android:visibility="visible" />
 
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <Button
                             android:id="@+id/btn_set_alarm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:backgroundTint="@color/colorPrimary"
+                            android:backgroundTint="@color/mauiBlue"
                             android:paddingStart="16dp"
+                            android:paddingTop="16dp"
                             android:paddingEnd="16dp"
+                            android:paddingBottom="16dp"
                             android:text="เลือกเวลาใหม่"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/text_size_smaller3" />
                     </LinearLayout>
 
@@ -342,11 +343,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:paddingStart="32dp"
-                android:paddingEnd="32dp"
+                android:backgroundTint="@color/mauiBlue"
+                android:paddingStart="40dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="16dp"
                 android:text="บันทึก"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_smaller3" />
 
         </LinearLayout>
