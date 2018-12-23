@@ -20,4 +20,5 @@
     <color name="sodaliteBlue">#2C3E68</color>
     <color name="alphaSodaliteBlue">#992C3E68</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

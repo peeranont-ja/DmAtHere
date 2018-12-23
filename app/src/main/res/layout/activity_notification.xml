@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:minWidth="300dp"
+    android:minWidth="350dp"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -30,7 +30,7 @@
             android:layout_margin="10dp"
             android:text="ยาฉีดอินซูลิน ชนิดที่ 1"
             android:textColor="#000000"
-            android:textSize="@dimen/text_size_smaller4" />
+            android:textSize="@dimen/text_size_smaller3" />
 
         <TextView
             android:id="@+id/tv_first_medicine_desc"
@@ -38,9 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:lineSpacingExtra="0.5dp"
+            android:lineSpacingExtra="4dp"
             android:text="ชื่อยา \nปริมาณ"
-            android:textSize="@dimen/text_size_smaller2" />
+            android:textSize="@dimen/text_size_smaller1" />
 
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_marginBottom="10dp"
             android:text="ยาฉีดอินซูลิน ชนิดที่ 2"
             android:textColor="#000000"
-            android:textSize="@dimen/text_size_smaller4"
+            android:textSize="@dimen/text_size_smaller3"
             android:visibility="gone" />
 
         <TextView
@@ -62,9 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:lineSpacingExtra="0.5dp"
+            android:lineSpacingExtra="4dp"
             android:text="ชื่อยา \nปริมาณ"
-            android:textSize="@dimen/text_size_smaller2"
+            android:textSize="@dimen/text_size_smaller1"
             android:visibility="gone" />
 
     </LinearLayout>
@@ -86,7 +86,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textSize="@dimen/text_size_smaller2"
+        android:backgroundTint="@color/mauiBlue"
         android:text="ปิดหน้าต่างนี้"
         android:textColor="@android:color/white" />
 

@@ -90,17 +90,23 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
     }
 
     private fun concatDescription(medicine: String, amount: String): SpannableString {
-        val concatWording = "$medicine \nปริมาณ $amount ยูนิต"
+        val concatWording = "$medicine\nปริมาณ $amount ยูนิต"
         val wordToSpan = SpannableString(concatWording)
         wordToSpan.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)),
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimaryDark)),
                 0,
                 medicine.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         wordToSpan.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)),
-                medicine.length + 8,
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.black)),
+                medicine.length,
+                medicine.length + 7,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        wordToSpan.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimaryDark)),
+                medicine.length + 7,
                 concatWording.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         return wordToSpan
@@ -114,7 +120,7 @@ internal class ShowEventDialog : Activity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        wl.acquire(10*60*1000L /*10 minutes*/)//must call this!
+        wl.acquire(10 * 60 * 1000L /*10 minutes*/)//must call this!
         var notification: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         if (notification == null) {
             notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
