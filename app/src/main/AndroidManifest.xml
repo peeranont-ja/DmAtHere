@@ -45,6 +45,7 @@
         <activity android:name=".ui.howToUse.HowToUsePenfillActivity" />
         <activity android:name=".ui.howToUse.HowToUseSyringeActivity" />
         <activity android:name=".ui.howToUse.SelectMedicineTypeActivity" />
+        <activity android:name=".ui.about.AboutActivity"></activity>
     </application>
 
 </manifest>

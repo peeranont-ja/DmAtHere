@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.navigation.NavigationView
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.data.Constant
+import com.kku.pharm.project.dmathere.ui.about.AboutActivity
 import com.kku.pharm.project.dmathere.ui.alarm.AlarmActivity
 import com.kku.pharm.project.dmathere.ui.howToUse.SelectMedicineTypeActivity
 import com.kku.pharm.project.dmathere.ui.medicine.MedicineListActivity
@@ -71,26 +72,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun goToAlarmPage() {
-        val intent = Intent(this, AlarmActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun goToMedicineListPage() {
-        val intent = Intent(this, MedicineListActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun goToSideEffectPage() {
-        val intent = Intent(this, SideEffectActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun goToSelectMedicineTypePage() {
-        val intent = Intent(this, SelectMedicineTypeActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun checkPermission() {
         if (ActivityCompat.checkSelfPermission(this,
                         android.Manifest.permission.WAKE_LOCK)
@@ -128,11 +109,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.nav_about -> {
-
+                goToAboutPage()
             }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun goToAlarmPage() {
+        val intent = Intent(this, AlarmActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToMedicineListPage() {
+        val intent = Intent(this, MedicineListActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToSideEffectPage() {
+        val intent = Intent(this, SideEffectActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToSelectMedicineTypePage() {
+        val intent = Intent(this, SelectMedicineTypeActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToAboutPage() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
 }

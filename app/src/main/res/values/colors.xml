@@ -10,10 +10,14 @@
     <color name="navigationBarColor">#000000</color>
 
     <color name="nude">#F7D0BD</color>
+    <color name="alphaNude">#99F7D0BD</color>
     <color name="oldGold">#F4A548</color>
+    <color name="alphaOldGold">#99F4A548</color>
     <color name="persimmonOrange">#FF7749</color>
-    <color name="victoriaBlue">#005995</color>
+    <color name="alphaPersimmonOrange">#99FF7749</color>
     <color name="mauiBlue">#3CA0B1</color>
+    <color name="victoriaBlue">#005995</color>
     <color name="sodaliteBlue">#2C3E68</color>
+    <color name="alphaSodaliteBlue">#992C3E68</color>
     <color name="white">#FFFFFF</color>
 </resources>
