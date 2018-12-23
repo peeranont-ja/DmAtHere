@@ -102,6 +102,7 @@ class AlarmNightFragment : Fragment() {
                 isAddingAction = true
             } else {
                 layout_second_medicine_detail.visibility = View.GONE
+                Toast.makeText(context, "ยกเลิกการเพิ่มยาฉีด ชนิดที่ 2", Toast.LENGTH_LONG).show()
                 img_second_medicine_action.setImageResource(R.mipmap.ic_add)
                 isAddingAction = false
             }
