@@ -203,10 +203,10 @@
                                     android:id="@+id/et_second_medicine_amount"
                                     android:layout_width="64dp"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
                                     android:backgroundTint="@color/colorPrimaryDark"
                                     android:imeOptions="actionDone"
                                     android:inputType="number"
-                                    android:layout_marginEnd="8dp"
                                     android:maxLength="3"
                                     android:textAlignment="center"
                                     tools:ignore="Autofill" />
@@ -329,21 +329,51 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layout_button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/mauiBlue"
-                android:paddingStart="40dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="40dp"
-                android:paddingBottom="16dp"
-                android:text="บันทึก"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_smaller3" />
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/mauiBlue"
+                    android:paddingStart="40dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="16dp"
+                    android:text="บันทึก"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_smaller3" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:paddingStart="40dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="16dp"
+                    android:text="ยกเลิก"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_smaller3"
+                    android:visibility="gone" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

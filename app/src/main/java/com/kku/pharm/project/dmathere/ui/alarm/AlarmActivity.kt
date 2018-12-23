@@ -1,13 +1,18 @@
 package com.kku.pharm.project.dmathere.ui.alarm
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.kku.pharm.project.dmathere.R
+import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
+import com.kku.pharm.project.dmathere.utils.AlarmUtils
 import kotlinx.android.synthetic.main.activity_alarm.*
 import java.util.*
 
@@ -23,6 +28,7 @@ class AlarmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
+        PreferenceHelper.initPreferenceHelper(this)
 
         toolbar.title = "ตั้งค่าแจ้งเตือนเวลาฉีดอินซูลิน"
         setSupportActionBar(toolbar)
@@ -35,6 +41,32 @@ class AlarmActivity : AppCompatActivity() {
         setupTabIcons()
 
         updateTabTextColors()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_clear -> {
+                AlarmUtils.cancelAllAlarm(this)
+                PreferenceHelper.clear()
+                showToast("ล้างการแจ้งเตือนทั้งหมดสำเร็จ")
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -52,7 +84,7 @@ class AlarmActivity : AppCompatActivity() {
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFrag(AlarmMorningFragment(), "เช้า")
-        adapter.addFrag(AlarmNoonFragment(), "กลางวัน")
+        adapter.addFrag(AlarmAfternoonFragment(), "กลางวัน")
         adapter.addFrag(AlarmEveningFragment(), "เย็น")
         adapter.addFrag(AlarmNightFragment(), "ก่อนนอน")
         viewPager.adapter = adapter
@@ -136,7 +168,6 @@ class AlarmActivity : AppCompatActivity() {
         val newFragment = TimePickerFragment()
         newFragment.show(this.supportFragmentManager, newFragment.tag)
     }
-
 
 
 }

@@ -33,11 +33,10 @@ import java.util.Calendar.HOUR_OF_DAY
 import java.util.Calendar.MINUTE
 
 class AlarmNightFragment : Fragment() {
-    private var isAddingAction = false
-    private var calendar: Calendar? = null
     private var myContext: FragmentActivity? = null
 
-
+    private var isAddingAction = false
+    private var calendar: Calendar? = null
     private var requestCodeID: Int = 0
     private var firstMed: String = ""
     private var firstMedAmount: String = ""
@@ -49,12 +48,9 @@ class AlarmNightFragment : Fragment() {
     private var hour: Int = 0
     private var minute: Int = 0
 
-
-    private var previousAlarmData: AlarmTimeInformation? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        previousAlarmData = getLatestNightAlarmData()
+        PreferenceHelper.initPreferenceHelper(context!!)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -71,11 +67,6 @@ class AlarmNightFragment : Fragment() {
         super.onAttach(context)
     }
 
-    private fun getLatestNightAlarmData(): AlarmTimeInformation? {
-        PreferenceHelper.initPreferenceHelper(context!!)
-        return PreferenceHelper.alarmTimeNightInfo
-    }
-
     private fun setupView() {
         setupSpinner()
         setupExistingData()
@@ -84,13 +75,38 @@ class AlarmNightFragment : Fragment() {
             showTimePickerDialog()
         }
 
+        btn_cancel.setOnClickListener {
+            cancelPreviousAlarm()
+            PreferenceHelper.alarmTimeNightInfo = null
+
+            resetData()
+            setupSpinner()
+
+            et_first_medicine_amount.setText("")
+            et_second_medicine_amount.setText("")
+
+            layout_second_medicine_detail.visibility = View.GONE
+            img_second_medicine_action.setImageResource(R.mipmap.ic_add)
+
+            layout_time.visibility = View.GONE
+            tv_hour.text = convertOneDigitToTwoDigit(hour)
+            tv_minute.text = convertOneDigitToTwoDigit(minute)
+            checkBox_repeat_alarm.isChecked = false
+            btn_set_alarm.text = "เลือกเวลาใหม่"
+
+            TransitionManager.beginDelayedTransition(layout_button)
+            btn_cancel.visibility = View.GONE
+
+            showToast("ยกเลิกเวลาแจ้งเตือนสำเร็จ")
+        }
+
         btn_save.setOnClickListener {
             firstMedAmount = et_first_medicine_amount.text.toString()
             secondMedAmount = if (et_second_medicine_amount.text.isNullOrBlank()) {
                 null
-            } else et_second_medicine_amount.text.toString()
-
-            previousAlarmData = PreferenceHelper.alarmTimeNightInfo
+            } else {
+                et_second_medicine_amount.text.toString()
+            }
             setAlarm(calendar)
         }
 
@@ -99,10 +115,11 @@ class AlarmNightFragment : Fragment() {
             if (!isAddingAction) {
                 layout_second_medicine_detail.visibility = View.VISIBLE
                 img_second_medicine_action.setImageResource(R.mipmap.ic_remove)
+                Toast.makeText(context, "เพิ่มยาฉีด ชนิดที่ 2", Toast.LENGTH_SHORT).show()
                 isAddingAction = true
             } else {
                 layout_second_medicine_detail.visibility = View.GONE
-                Toast.makeText(context, "ยกเลิกการเพิ่มยาฉีด ชนิดที่ 2", Toast.LENGTH_LONG).show()
+                showToast("ยกเลิกการเพิ่มยาฉีด ชนิดที่ 2")
                 img_second_medicine_action.setImageResource(R.mipmap.ic_add)
                 isAddingAction = false
             }
@@ -116,6 +133,19 @@ class AlarmNightFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun resetData() {
+        isAddingAction = false
+        calendar = null
+        requestCodeID = 0
+        firstMed = ""
+        firstMedAmount = ""
+        secondMed = null
+        secondMedAmount = null
+        isRepeated = false
+        hour = 0
+        minute = 0
     }
 
     private fun setupSpinner() {
@@ -154,28 +184,30 @@ class AlarmNightFragment : Fragment() {
     }
 
     private fun setupExistingData() {
+        val previousAlarmData = PreferenceHelper.alarmTimeNightInfo
         if (previousAlarmData != null) {
+            btn_cancel.visibility = View.VISIBLE
 
-            spinner_first_medicine.setSelection(medicineNameList.indexOf(previousAlarmData!!.firstMed))
-            et_first_medicine_amount.setText(previousAlarmData!!.firstMedAmount)
+            spinner_first_medicine.setSelection(medicineNameList.indexOf(previousAlarmData.firstMed))
+            et_first_medicine_amount.setText(previousAlarmData.firstMedAmount)
 
-            calendar = previousAlarmData!!.calendar
-            hour = previousAlarmData!!.hour
-            minute = previousAlarmData!!.minute
+            calendar = previousAlarmData.calendar
+            hour = previousAlarmData.hour
+            minute = previousAlarmData.minute
 
             layout_time.visibility = View.VISIBLE
             tv_hour.text = convertOneDigitToTwoDigit(hour)
             tv_minute.text = convertOneDigitToTwoDigit(minute)
 
             checkBox_repeat_alarm.visibility = View.VISIBLE
-            checkBox_repeat_alarm.isChecked = previousAlarmData!!.isRepeated
+            checkBox_repeat_alarm.isChecked = previousAlarmData.isRepeated
             btn_set_alarm.text = "แก้ไขเวลา"
 
-            if (previousAlarmData!!.secondMed != null
-                    && previousAlarmData!!.secondMedAmount != null) {
+            if (previousAlarmData.secondMed != null
+                    && previousAlarmData.secondMedAmount != null) {
 
-                spinner_second_medicine.setSelection(medicineNameList.indexOf(previousAlarmData!!.secondMed))
-                et_second_medicine_amount.setText(previousAlarmData!!.secondMedAmount)
+                spinner_second_medicine.setSelection(medicineNameList.indexOf(previousAlarmData.secondMed))
+                et_second_medicine_amount.setText(previousAlarmData.secondMedAmount)
 
                 layout_second_medicine_detail.visibility = View.VISIBLE
                 img_second_medicine_action.setImageResource(R.mipmap.ic_remove)
@@ -235,29 +267,32 @@ class AlarmNightFragment : Fragment() {
                 Constant.STATUS_ACTIVE
         )
 
-        PreferenceHelper.alarmTimeNightInfo = currentAlarmInfo
         cancelPreviousAlarm()
+        PreferenceHelper.alarmTimeNightInfo = currentAlarmInfo
+
+        TransitionManager.beginDelayedTransition(layout_button)
+        btn_cancel.visibility = View.VISIBLE
 
         val currentNightAlarmData = PreferenceHelper.alarmTimeNightInfo
         if (currentNightAlarmData != null) {
-            Log.d("test currentMorningData", currentNightAlarmData.requestCodeID.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.firstMed)
-            Log.d("test currentMorningData", currentNightAlarmData.firstMedAmount)
-            Log.d("test currentMorningData", currentNightAlarmData.secondMed.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.secondMedAmount.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.hour.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.minute.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.calendar.time.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.timeDescription)
-            Log.d("test currentMorningData", currentNightAlarmData.isRepeated.toString())
-            Log.d("test currentMorningData", currentNightAlarmData.status)
+            Log.d("test nowNightAlarm", currentNightAlarmData.requestCodeID.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.firstMed)
+            Log.d("test nowNightAlarm", currentNightAlarmData.firstMedAmount)
+            Log.d("test nowNightAlarm", currentNightAlarmData.secondMed.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.secondMedAmount.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.hour.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.minute.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.calendar.time.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.timeDescription)
+            Log.d("test nowNightAlarm", currentNightAlarmData.isRepeated.toString())
+            Log.d("test nowNightAlarm", currentNightAlarmData.status)
         }
-
     }
 
     private fun cancelPreviousAlarm() {
+        val previousAlarmData = PreferenceHelper.alarmTimeNightInfo
         if (previousAlarmData != null) {
-            cancelAlarm(context!!, previousAlarmData!!.requestCodeID)
+            cancelAlarm(context!!, previousAlarmData.requestCodeID)
             Log.d("test cancel previous ", "Cancel success.")
         }
     }

@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.ui.alarm.AlarmReceiver
 import java.util.*
 
@@ -43,5 +44,29 @@ object AlarmUtils {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
         Log.d("test alarm", ": Cancel Alarm success.")
+    }
+
+    fun cancelAllAlarm(context: Context) {
+        PreferenceHelper.initPreferenceHelper(context)
+        val morningData = PreferenceHelper.alarmTimeMorningInfo
+        val afternoonData = PreferenceHelper.alarmTimeAfternoonInfo
+        val eveningData = PreferenceHelper.alarmTimeEveningInfo
+        val nightData = PreferenceHelper.alarmTimeNightInfo
+
+        if (morningData != null) {
+            cancelAlarm(context, morningData.requestCodeID)
+        }
+
+        if (afternoonData != null) {
+            cancelAlarm(context, afternoonData.requestCodeID)
+        }
+
+        if (eveningData != null) {
+            cancelAlarm(context, eveningData.requestCodeID)
+        }
+
+        if (nightData != null) {
+            cancelAlarm(context, nightData.requestCodeID)
+        }
     }
 }
