@@ -5,9 +5,24 @@
 
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_calendar"
-            android:icon="@drawable/ic_calendar"
-            android:title="ข้อมูลการแจ้งเตือนฉีดยาอินซูลิน" />
+            android:id="@+id/nav_alarm"
+            android:icon="@drawable/ic_bell_alarm"
+            android:title="ตั้งค่าแจ้งเตือนเวลาฉีดอินซูลิน" />
+
+        <item
+            android:id="@+id/nav_drugs"
+            android:icon="@drawable/ic_drugs"
+            android:title="ยาฉีดอินซูลิน" />
+
+        <item
+            android:id="@+id/nav_how_to"
+            android:icon="@drawable/ic_syringe"
+            android:title="วิธีการฉีดยาอินซูลิน" />
+
+        <item
+            android:id="@+id/nav_side_effect"
+            android:icon="@drawable/ic_warning"
+            android:title="อาการข้างเคียงของยาฉีดอินซูลิน" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"

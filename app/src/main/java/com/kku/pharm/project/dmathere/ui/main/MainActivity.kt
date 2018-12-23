@@ -105,8 +105,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_calendar -> {
-                // Handle the camera action
+            R.id.nav_alarm -> {
+                goToAlarmPage()
+            }
+            R.id.nav_drugs -> {
+                goToMedicineListPage()
+            }
+            R.id.nav_how_to -> {
+                goToSelectMedicineTypePage()
+            }
+            R.id.nav_side_effect -> {
+                goToSideEffectPage()
             }
             R.id.nav_about -> {
                 goToAboutPage()
