@@ -49,7 +49,7 @@ class MedicineListFragment : Fragment() {
                                                                                    v,
                                                                                    position,
                                                                                    id ->
-            Toast.makeText(context, "Grid Item " + (position + 1) + " Selected", Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, "Grid Item " + (position + 1) + " Selected", Toast.LENGTH_LONG).show()
             goToMedicineDetailPage(position)
         }
     }
