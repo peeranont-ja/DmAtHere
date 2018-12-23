@@ -5,34 +5,26 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_warning"
-            android:title="Import" />
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_calendar"
+            android:title="ข้อมูลการแจ้งเตือนฉีดยาอินซูลิน" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_drugs"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_warning"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_drugs"
-            android:title="Tools" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info"
+            android:title="เกี่ยวกับ" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_warning"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_drugs"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="เมนูเพิ่มเติม">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_warning"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_drugs"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>
