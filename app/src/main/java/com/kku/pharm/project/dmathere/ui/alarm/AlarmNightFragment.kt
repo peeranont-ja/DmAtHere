@@ -221,7 +221,7 @@ class AlarmNightFragment : Fragment() {
 
     private fun setAlarm(calendar: Calendar?) {
         if (calendar != null && !firstMedAmount.isBlank()) {
-            val id = (System.currentTimeMillis()/1000/60).toInt()
+            val id = System.currentTimeMillis().toInt()
             alarmUtils.setAlarm(
                     context!!,
                     id,

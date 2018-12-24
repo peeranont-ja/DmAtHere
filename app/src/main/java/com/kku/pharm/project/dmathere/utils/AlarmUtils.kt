@@ -25,11 +25,11 @@ class AlarmUtils {
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
+                    60000,
                     pendingIntent)
             Log.d("test alarm", calendar.time.toString() + ": Set Repeat Alarm success.")
         } else {
-            alarmManager.set(
+            alarmManager.setExact(
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
                     pendingIntent)
