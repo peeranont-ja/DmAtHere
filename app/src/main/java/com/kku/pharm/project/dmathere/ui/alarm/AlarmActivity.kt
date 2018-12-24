@@ -55,7 +55,8 @@ class AlarmActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_clear -> {
-                AlarmUtils.cancelAllAlarm(this)
+                val alarmUtils = AlarmUtils()
+                alarmUtils.cancelAllAlarm(this)
                 PreferenceHelper.clear()
                 showToast("ล้างการแจ้งเตือนทั้งหมดสำเร็จ")
                 finish()
@@ -159,7 +160,7 @@ class AlarmActivity : AppCompatActivity() {
 //    }
 //
 //    @Subscribe(threadMode = ThreadMode.MAIN)
-//    fun onOnTimeSetEvent(event: OnTimeSetEvent) {
+//    fun onOnTimeSetEvent(event: OnMorningAlarmSetEvent) {
 //        /* Do something */
 //        setAlarm(event.calendar)
 //    }

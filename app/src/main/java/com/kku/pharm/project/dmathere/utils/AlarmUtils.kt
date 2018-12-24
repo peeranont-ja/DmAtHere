@@ -10,7 +10,7 @@ import com.kku.pharm.project.dmathere.ui.alarm.AlarmReceiver
 import java.util.*
 
 
-object AlarmUtils {
+class AlarmUtils {
 
     fun setAlarm(context: Context,
                  requestCode: Int,
@@ -18,7 +18,7 @@ object AlarmUtils {
                  isRepeated: Boolean) {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("requestCode", requestCode)
-        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         if (isRepeated) {
@@ -40,7 +40,7 @@ object AlarmUtils {
     fun cancelAlarm(context: Context,
                     requestCode: Int) {
         val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
         Log.d("test alarm", ": Cancel Alarm success.")

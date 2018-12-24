@@ -14,15 +14,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.kku.pharm.project.dmathere.events.OnTimeSetEvent
 import com.kku.pharm.project.dmathere.R
 import com.kku.pharm.project.dmathere.common.BaseDialog.createSimpleOkErrorDialog
 import com.kku.pharm.project.dmathere.data.Constant
 import com.kku.pharm.project.dmathere.data.Constant.medicineNameList
 import com.kku.pharm.project.dmathere.data.local.PreferenceHelper
 import com.kku.pharm.project.dmathere.data.model.AlarmTimeInformation
+import com.kku.pharm.project.dmathere.events.OnEveningAlarmSetEvent
 import com.kku.pharm.project.dmathere.utils.AlarmUtils
-import com.kku.pharm.project.dmathere.utils.AlarmUtils.cancelAlarm
 import com.kku.pharm.project.dmathere.utils.DataFormatter.convertOneDigitToTwoDigit
 import kotlinx.android.synthetic.main.fragment_alarm_evening.*
 import org.greenrobot.eventbus.EventBus
@@ -33,6 +32,7 @@ import java.util.Calendar.HOUR_OF_DAY
 import java.util.Calendar.MINUTE
 
 class AlarmEveningFragment : Fragment() {
+    private var alarmUtils = AlarmUtils()
     private var myContext: FragmentActivity? = null
 
     private var isAddingAction = false
@@ -221,8 +221,8 @@ class AlarmEveningFragment : Fragment() {
 
     private fun setAlarm(calendar: Calendar?) {
         if (calendar != null && !firstMedAmount.isBlank()) {
-            val id = System.currentTimeMillis().toInt()
-            AlarmUtils.setAlarm(
+            val id = (System.currentTimeMillis()/1000/60).toInt()
+            alarmUtils.setAlarm(
                     context!!,
                     id,
                     calendar,
@@ -292,7 +292,7 @@ class AlarmEveningFragment : Fragment() {
     private fun cancelPreviousAlarm() {
         val previousAlarmData = PreferenceHelper.alarmTimeEveningInfo
         if (previousAlarmData != null) {
-            cancelAlarm(context!!, previousAlarmData.requestCodeID)
+            alarmUtils.cancelAlarm(context!!, previousAlarmData.requestCodeID)
             Log.d("test cancel previous ", "Cancel success.")
         }
     }
@@ -300,6 +300,7 @@ class AlarmEveningFragment : Fragment() {
 
     private fun showTimePickerDialog() {
         val newFragment = TimePickerFragment()
+        newFragment.timeDescription = timeDesc
         newFragment.show(myContext!!.supportFragmentManager, newFragment.tag)
     }
 
@@ -315,7 +316,8 @@ class AlarmEveningFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onOnTimeSetEvent(event: OnTimeSetEvent) {
+    fun onOnTimeSetEvent(event: OnEveningAlarmSetEvent) {
+        Log.d("test event", "Evening Event")
         calendar = event.calendar
         hour = calendar!!.get(HOUR_OF_DAY)
         minute = calendar!!.get(MINUTE)
