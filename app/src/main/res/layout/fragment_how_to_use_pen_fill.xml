@@ -263,7 +263,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_how_to_12" />
 
             <LinearLayout
@@ -323,7 +323,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_how_to_14" />
 
             <LinearLayout
@@ -441,7 +441,7 @@
                     android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_how_to_16" />
 
@@ -565,7 +565,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
-                android:text="-   ล้างมือด้วยสบู่และน้ำให้สะอาด แล้วเช็ดมือให้แห้ง"
+                android:text="-   ตำแหน่งที่เหมาะสมในการฉีดอินซูลิน คือ หน้าท้อง หน้าขา หน้าแขน บั้นเอว สะโพก"
                 android:textSize="@dimen/text_size_smaller3" />
 
             <ImageView

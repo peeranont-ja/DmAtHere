@@ -374,7 +374,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
-                android:text="-   ล้างมือด้วยสบู่และน้ำให้สะอาด แล้วเช็ดมือให้แห้ง"
+                android:text="-   ตำแหน่งที่เหมาะสมในการฉีดอินซูลิน คือ หน้าท้อง หน้าขา หน้าแขน บั้นเอว สะโพก"
                 android:textSize="@dimen/text_size_smaller3" />
 
             <ImageView
@@ -454,7 +454,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:orientation="vertical">
 
                     <TextView
@@ -475,14 +475,14 @@
                         android:textAlignment="textStart"
                         android:textSize="@dimen/text_size_smaller4" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:alpha="0.8"
-                        android:text="2. โรงพยาบาลศิริราชปิยมหาการุณย์"
-                        android:textAlignment="textStart"
-                        android:textSize="@dimen/text_size_smaller4" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="2dp"-->
+                        <!--android:alpha="0.8"-->
+                        <!--android:text="2. โรงพยาบาลศิริราชปิยมหาการุณย์"-->
+                        <!--android:textAlignment="textStart"-->
+                        <!--android:textSize="@dimen/text_size_smaller4" />-->
 
                 </LinearLayout>
             </LinearLayout>
