@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_alarm"
             android:icon="@drawable/ic_bell_alarm"
-            android:title="ตั้งค่าแจ้งเตือนเวลาฉีดอินซูลิน" />
+            android:title="ตั้งค่าแจ้งเตือน" />
 
         <item
             android:id="@+id/nav_drugs"
@@ -22,7 +22,7 @@
         <item
             android:id="@+id/nav_side_effect"
             android:icon="@drawable/ic_warning"
-            android:title="อาการข้างเคียงของยาฉีดอินซูลิน" />
+            android:title="อาการข้างเคียง" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"
